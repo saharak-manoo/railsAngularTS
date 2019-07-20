@@ -84,3 +84,4 @@ gem 'letter_opener'
 gem 'cancancan'
 
 gem 'rails_admin', '~> 2.0.0.beta'
+gem "rolify"

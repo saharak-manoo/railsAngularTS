@@ -1,13 +1,41 @@
-<div class="container">
-  <div class="jumbotron">
-    <h1>Rails & Angular</h1>
+<nav class="navbar navbar-expand-lg navbar-dark primary-color">
+  <a class="navbar-brand" routerLink="homes" routerLinkActive="active">Angular</a>
 
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+    aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="basicExampleNav">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="homes" routerLinkActive="active">Home
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="users" routerLinkActive="active">User</a>
+      </li>
+    </ul>
+
+    <form class="form-inline">
+      <div class="md-form my-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      </div>
+    </form>
   </div>
-  <div class="btn-group btn-group-justified">
-    <div class="btn-group">
-      <a routerLink="/homes" routerLinkActive="active"><button type="button" class="btn btn-primary">home</button></a>
+</nav>
+
+<div class="container py-4">
+  <ng-flash-message></ng-flash-message>
+  <div class="card">
+    <div class="row">
+      <div class="col-lg-12">
+        <h1>Rails & Angular</h1>
+      </div>
+      <div class="col-lg-12">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
 </div>
-
-<router-outlet></router-outlet>
