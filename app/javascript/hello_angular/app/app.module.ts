@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgFlashMessagesModule } from 'ng-flash-messages';
 import { UsersComponent } from '../users/users.component';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 enableProdMode();
 
@@ -33,6 +34,7 @@ const appRoutes: Routes = [
     NgxPaginationModule,
     FormsModule,
     NgFlashMessagesModule.forRoot(),
+    TooltipModule.forRoot(),
     RouterModule.forRoot(
       appRoutes,
       { useHash: true }

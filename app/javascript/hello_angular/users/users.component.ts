@@ -1,8 +1,7 @@
-import { Component, TemplateRef } from '@angular/core';
+import { Component } from '@angular/core';
 import templateString from './users.html';
 import { NgFlashMessageService } from "ng-flash-messages";
 import { UsersService } from '../users/users.service';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   template: templateString,
