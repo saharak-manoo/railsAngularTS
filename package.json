@@ -18,6 +18,7 @@
     "babel-runtime": "^6.26.0",
     "core-js": "^2.5.7",
     "ng-flash-messages": "^0.3.0",
+    "ngx-bootstrap": "^5.1.0",
     "ngx-pagination": "^4.1.0",
     "rxjs": "^6.5.2",
     "ts-loader": "^6.0.4",

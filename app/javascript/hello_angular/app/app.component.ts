@@ -7,11 +7,10 @@ import { NgFlashMessageService } from "ng-flash-messages";
   template: templateString
 })
 export class AppComponent {
-  constructor(private ngFlashMessageService: NgFlashMessageService) {}
+  constructor(private ngFlashMessageService: NgFlashMessageService) { }
   name = "Angular!";
 
   ngOnInit() {
-    console.log(">>>>>");
     this.ngFlashMessageService.showFlashMessage({
       // Array of messages each will be displayed in new line
       messages: ["Yah! i'm alive"],

@@ -1,34 +1,43 @@
 <div class="row">
   <div class="col-lg-12">
-    <table class="table">
+    <div class="row">
+      <div class="col-lg-8"></div>
+      <div class="col-lg-4 pull-right">
+        <input aria-label="Search" [(ngModel)]="search" (keyup)="loadTable()" placeholder="Search" type="text">
+      </div>
+    </div>
+    <table class="table" *ngIf="datas.users">
       <thead>
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Nmae</th>
+          <th>Phone Number</th>
+          <th>Create At</th>
+          <th>Update At</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
+        <tr *ngFor="let user of datas.users | paginate: config ">
+          <td>{{ user.id }}</td>
+          <td><a routerLink="/users/{{ user.id }}">{{ user.first_name }}</a></td>
+          <td><a routerLink="/users/{{ user.id }}">{{ user.last_name }}</a></td>
+          <td>{{ user.phone_number }}</td>
+          <td>{{ user.created_at | date:'dd/MM/yyyy เวลา HH:mm' }}</td>
+          <td>{{ user.updated_at | date:'dd/MM/yyyy เวลา HH:mm' }}</td>
+          <td><button class="btn btn-danger" (click)="removeUser(user.id)">Delete</button></td>
         </tr>
       </tbody>
     </table>
+
+    <div class="row">
+      <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+      <div class="col-lg-1 pull-right">
+        <select [(ngModel)]="limit" class="form-control" (change)="loadTable()">
+          <option *ngFor="let limit of limited" [value]="limit">{{ limit }}</option>
+        </select>
+      </div>
+    </div>
   </div>
 </div>
