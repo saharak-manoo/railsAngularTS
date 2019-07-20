@@ -16,6 +16,12 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="users" routerLinkActive="active">User</a>
       </li>
+      <li class="nav-item" *ngIf="!sessions.sign_in">
+        <a class="nav-link" routerLink="sign_in" routerLinkActive="active">Sign in</a>
+      </li>
+      <li class="nav-item" *ngIf="sessions.sign_in">
+        <a class="nav-link" (click)="signOut(sessions.current_user.id)">Sign Out</a>
+      </li>
     </ul>
 
     <form class="form-inline">
@@ -30,9 +36,6 @@
   <ng-flash-message></ng-flash-message>
   <div class="card">
     <div class="row">
-      <div class="col-lg-12">
-        <h1>Rails & Angular</h1>
-      </div>
       <div class="col-lg-12">
         <router-outlet></router-outlet>
       </div>

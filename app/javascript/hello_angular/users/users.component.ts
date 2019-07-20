@@ -2,14 +2,16 @@ import { Component } from '@angular/core';
 import templateString from './users.html';
 import { NgFlashMessageService } from "ng-flash-messages";
 import { UsersService } from '../users/users.service';
+import { CheckSignInService } from '../sessions/check_sign_in.service';
 
 @Component({
   template: templateString,
-  providers: [UsersService]
+  providers: [UsersService, CheckSignInService]
 })
 export class UsersComponent {
-  constructor(private ngFlashMessageService: NgFlashMessageService, private usersService: UsersService) { }
+  constructor(private ngFlashMessageService: NgFlashMessageService, private usersService: UsersService, private checkSignInService: CheckSignInService) { }
   public datas: any;
+  public sessions: any;
   config: any;
   search: any;
   limit: number = 10;
@@ -18,7 +20,19 @@ export class UsersComponent {
   limited = [5, 10, 15, 20, 50, 100];
 
   ngOnInit() {
+    this.checkSignIn();
     this.loadTable();
+  }
+
+  checkSignIn() {
+    this.checkSignInService.all().subscribe(
+      resp => {
+        console.log(resp)
+        this.sessions = resp;
+      }, e => {
+        console.log(e);
+      }
+    )
   }
 
   loadTable() {

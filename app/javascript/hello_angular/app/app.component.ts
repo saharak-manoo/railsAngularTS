@@ -1,25 +1,48 @@
 import { Component } from "@angular/core";
 import templateString from "./app.html";
 import { NgFlashMessageService } from "ng-flash-messages";
+import { CheckSignInService } from '../sessions/check_sign_in.service';
+import { SignOutService } from '../sessions/sign_out.service';
 
 @Component({
   selector: "hello-angular",
-  template: templateString
+  template: templateString,
+  providers: [CheckSignInService, SignOutService]
 })
 export class AppComponent {
-  constructor(private ngFlashMessageService: NgFlashMessageService) { }
-  name = "Angular!";
+  constructor(private ngFlashMessageService: NgFlashMessageService, private checkSignInService: CheckSignInService, private signOutService: SignOutService) { }
+  public sessions: any;
 
   ngOnInit() {
-    this.ngFlashMessageService.showFlashMessage({
-      // Array of messages each will be displayed in new line
-      messages: ["Yah! i'm alive"],
-      // Whether the flash can be dismissed by the user defaults to false
-      dismissible: true,
-      // Time after which the flash disappears defaults to 2000ms
-      timeout: false,
-      // Type of flash message, it defaults to info and success, warning, danger types can also be used
-      type: "danger"
-    });
+    this.checkSignIn();
+  }
+
+  checkSignIn() {
+    this.checkSignInService.all().subscribe(
+      resp => {
+        console.log(resp)
+        this.sessions = resp;
+      }, e => {
+        console.log(e);
+      }
+    )
+  }
+
+  signOut(id) {
+    var confirmation = confirm('Are you sure ?');
+    if (confirmation) {
+      this.signOutService.delete(id).subscribe(
+        resp => {
+          this.ngFlashMessageService.showFlashMessage({
+            messages: ["Sign Out success."],
+            dismissible: true,
+            timeout: true,
+            type: "success"
+          });
+        }, e => {
+          console.log(e);
+        }
+      );
+    }
   }
 }

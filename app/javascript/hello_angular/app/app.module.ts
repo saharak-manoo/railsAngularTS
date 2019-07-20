@@ -12,6 +12,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { NgFlashMessagesModule } from 'ng-flash-messages';
 import { UsersComponent } from '../users/users.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { SessionsComponent } from '../sessions/sessions.component';
 
 enableProdMode();
 
@@ -19,6 +20,7 @@ const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'homes', component: HomeComponent },
   { path: 'users', component: UsersComponent },
+  { path: 'sign_in', component: SessionsComponent },
 ];
 
 @NgModule({
@@ -26,6 +28,7 @@ const appRoutes: Routes = [
     AppComponent,
     HomeComponent,
     UsersComponent,
+    SessionsComponent,
   ],
   imports: [
     BrowserModule,
