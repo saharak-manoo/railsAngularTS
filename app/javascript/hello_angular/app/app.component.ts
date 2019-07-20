@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import templateString from './app.component.html'
+import { Component } from '@angular/core'
+import templateString from './app.html'
 
 @Component({
   selector: 'hello-angular',
-  template: '<h1>2222</h1>'
+  template: templateString
 })
 
 export class AppComponent {
