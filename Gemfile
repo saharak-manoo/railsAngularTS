@@ -52,3 +52,35 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# Easy file attachment management for ActiveRecord
+gem 'paperclip', '~> 6.0.0'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+
+gem 'flag-icons-rails'
+gem 'bootstrap', '~> 4.3.1'
+gem 'bootstrap4-datetime-picker-rails' # https://tempusdominus.github.io/bootstrap-4/
+
+# order matters
+gem 'simple_form'
+
+# soft delete
+gem 'paranoia', '~> 2.2'
+# Flexible authentication solution for Rails with Warden
+gem 'devise'
+
+gem 'awesome_print', require: 'ap'
+
+# boostrap confirm dialog
+gem 'data-confirm-modal'
+
+# Decorators/View-Models for Rails Applications
+gem 'draper'
+
+gem 'letter_opener_web', '~> 1.0'
+gem 'letter_opener'
+
+gem 'cancancan'
+
+gem 'rails_admin', '~> 2.0.0.beta'
