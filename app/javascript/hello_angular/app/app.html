@@ -27,7 +27,8 @@
       <button class="btn btn-sm text-white" id="dropdownSignInMenu"
         ngbDropdownToggle>{{ sessions.current_user.email }}</button>
       <div ngbDropdownMenu aria-labelledby="dropdownSignInMenu">
-        <button ngbDropdownItem>Profile</button>
+        <button ngbDropdownItem routerLink="users/{{ sessions.current_user.id }}"
+          routerLinkActive="active">Profile</button>
         <div class="dropdown-divider"></div>
         <button ngbDropdownItem (click)="signOut(sessions.current_user.id)">Sign Out</button>
       </div>
