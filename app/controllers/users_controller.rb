@@ -27,10 +27,11 @@ class UsersController < ApplicationController
     # search
     if params[:search].present?
       search = "%#{params[:search]}%"
-      @users = @users.where('first_name LIKE :search OR
-                                   last_name LIKE :search OR
-                                   phone_number LIKE :search',
-                                   search: search)
+      @users = @users.where('email LIKE :search OR
+                             first_name LIKE :search OR
+                             last_name LIKE :search OR
+                             phone_number LIKE :search',
+                             search: search)
     end
   end
 

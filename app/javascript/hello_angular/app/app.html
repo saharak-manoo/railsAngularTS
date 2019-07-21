@@ -23,7 +23,7 @@
     </ul>
 
     <div ngbDropdown class="d-inline-block" *ngIf="sessions.signed_in">
-      <img [src]="sessions.photo_url" class="img-sm">
+      <img [src]="sessions.photo_url" class="img-sm" ngbDropdownToggle>
       <button class="btn btn-sm text-white" id="dropdownSignInMenu"
         ngbDropdownToggle>{{ sessions.current_user.email }}</button>
       <div ngbDropdownMenu aria-labelledby="dropdownSignInMenu">
