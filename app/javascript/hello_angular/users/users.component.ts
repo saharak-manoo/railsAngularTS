@@ -13,7 +13,7 @@ export class UsersComponent {
   public sessions: any;
   config: any;
   search: any;
-  limit: number = 10;
+  limit: number = 5;
   params: any;
   pageNow: number;
   limited = [5, 10, 15, 20, 50, 100];

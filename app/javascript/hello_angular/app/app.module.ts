@@ -19,6 +19,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmDialogComponent } from '../confirm_dialog/confirm_dialog.conponent';
+import { CustomMaterialModule } from '../custom_material/custom_material.module';
 
 enableProdMode();
 
@@ -35,6 +37,7 @@ const appRoutes: Routes = [
     HomeComponent,
     UsersComponent,
     SignInComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +45,7 @@ const appRoutes: Routes = [
     NgxDatatableModule,
     NgxPaginationModule,
     FormsModule,
+    CustomMaterialModule,
     NgFlashMessagesModule.forRoot(),
     TooltipModule.forRoot(),
     ReactiveFormsModule,
@@ -59,6 +63,7 @@ const appRoutes: Routes = [
   providers: [
     { provide: APP_BASE_HREF, useValue: '/' }
   ],
+  entryComponents: [ConfirmDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

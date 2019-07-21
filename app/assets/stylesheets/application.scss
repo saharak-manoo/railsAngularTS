@@ -20,7 +20,7 @@
 body {
   background: #e2e1e0;
   text-align: center;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .container {
@@ -59,8 +59,11 @@ body {
   margin-bottom: 20px;
 }
 
-input {
+.input-lable {
   font-size: 18px;
+}
+
+input {
   padding: 10px 10px 10px 5px;
   display: block;
   width: 300px;
@@ -197,4 +200,87 @@ input:focus~.highlight {
 .navbar .dropdown-menu-right {
   right: 0;
   left: auto;
+}
+
+Style Attribute {
+  max-width: 400px;
+  pointer-events: auto;
+  position: static;
+}
+
+button {
+  -webkit-appearance: button;
+  -webkit-writing-mode: horizontal-tb !important;
+  text-rendering: auto;
+  color: buttontext;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: center;
+  align-items: flex-start;
+  cursor: default;
+  background-color: buttonface;
+  box-sizing: border-box;
+  margin: 0em;
+  font: 400 11px system-ui;
+  padding: 1px 7px 2px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
+  border-image: initial;
+}
+
+.mat-dialog-title {
+  font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
+  margin: 0 0 20px;
+  display: block;
+}
+
+.mat-dialog-container {
+  display: block;
+  padding: 24px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  overflow: auto;
+  outline: 0;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  max-height: inherit;
+}
+
+.mat-dialog-container {
+  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, .2), 0 24px 38px 3px rgba(0, 0, 0, .14), 0 9px 46px 8px rgba(0, 0, 0, .12);
+  background: #fff;
+  color: rgba(0, 0, 0, .87);
+}
+
+.cdk-overlay-pane {
+  position: absolute;
+  pointer-events: auto;
+  box-sizing: border-box;
+  z-index: 1000;
+  display: flex;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.cdk-overlay-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5%;
+  align-items: center;
+  position: fixed;
+  z-index: 1000;
+}
+
+.cdk-overlay-container {
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
 }

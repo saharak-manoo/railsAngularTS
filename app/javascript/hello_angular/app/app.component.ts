@@ -3,6 +3,8 @@ import templateString from "./app.html";
 import { NgFlashMessageService } from "ng-flash-messages";
 import { AppService } from '../app/app.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ConfirmDialogModel, ConfirmDialogComponent } from '../confirm_dialog/confirm_dialog.conponent';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: "hello-angular",
@@ -10,7 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   providers: [AppService]
 })
 export class AppComponent {
-  constructor(private ngFlashMessageService: NgFlashMessageService, private appService: AppService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private ngFlashMessageService: NgFlashMessageService, private appService: AppService, private route: ActivatedRoute, private router: Router, public dialog: MatDialog) { }
   public sessions: {};
   activeTab: string;
   signInMenu = false;
@@ -38,33 +40,43 @@ export class AppComponent {
     )
   }
 
-  signOut() {
-    var confirmation = confirm('Are you sure ?');
-    if (confirmation) {
-      this.appService.signOut('users/sign_out').subscribe(
-        resp => {
-          if (resp) {
-            this.ngFlashMessageService.showFlashMessage({
-              messages: ["Sign Out success."],
-              dismissible: true,
-              timeout: 5000,
-              type: "success"
-            });
-          }
-          this.checkSignIn();
-          this.router.navigate(['homes']);
-        }, e => {
-          console.log(e);
-        }
-      );
-    }
-  }
-
   activeNavTab(tab) {
     this.activeTab = tab;
   }
 
   showSignInMenu() {
     this.signInMenu = !this.signInMenu;
+  }
+
+  signOut(): void {
+    const message = 'Are you sure you want to do this?';
+
+    const dialogData = new ConfirmDialogModel('Confirm Action', message);
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      maxWidth: "400px",
+      data: dialogData
+    });
+
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      if (dialogResult) {
+        this.appService.signOut('users/sign_out').subscribe(
+          resp => {
+            if (resp) {
+              this.ngFlashMessageService.showFlashMessage({
+                messages: ["Sign Out success."],
+                dismissible: true,
+                timeout: 5000,
+                type: "success"
+              });
+            }
+            this.checkSignIn();
+            this.router.navigate(['homes']);
+          }, e => {
+            console.log(e);
+          }
+        );
+      }
+    });
   }
 }

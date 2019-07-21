@@ -19,7 +19,11 @@ class UsersController < ApplicationController
   private
 
   def filter_users
-    @users = User.all
+    @users =  if user_signed_in?
+                User.where.not(id: current_user.id)
+              else 
+                User.all
+              end  
     # search
     if params[:search].present?
       search = "%#{params[:search]}%"

@@ -8,7 +8,7 @@
 
   <div class="collapse navbar-collapse" id="basicExampleNav">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active" [ngClass]="{ 'active': activeTab === 'homes'}" (click)="activeNavTab('homes')">
+      <li class="nav-item" [ngClass]="{ 'active': activeTab === 'homes'}" (click)="activeNavTab('homes')">
         <a class="nav-link" routerLink="homes" routerLinkActive="active">Home
           <span class="sr-only">(current)</span>
         </a>
