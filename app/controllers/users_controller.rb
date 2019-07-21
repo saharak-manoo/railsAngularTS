@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       render json: { updated: true }, status: :ok
     else
-      render json: { updated: false, errors: @user.errors }, status: 500
+      render json: { updated: false, errors: @user&.errors }, status: 500
     end  
   end
 
@@ -29,14 +29,14 @@ class UsersController < ApplicationController
     render json: { signed_in: user_signed_in?, 
                    current_user: current_user, 
                    photo_url: current_user&.photo&.url,
-                   role_admin: current_user.has_role?(:admin) }
+                   role_admin: current_user&.has_role?(:admin) }
   end  
 
   private
 
   def filter_users
     @users =  if user_signed_in?
-                User.where.not(id: current_user.id)
+                User.where.not(id: current_user&.id)
               else 
                 User.all
               end  
