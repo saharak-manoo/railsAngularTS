@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
 import templateString from './users.html';
 import { NgFlashMessageService } from "ng-flash-messages";
-import { UsersService } from '../users/users.service';
-import { CheckSignInService } from '../sessions/check_sign_in.service';
+import { AppService } from '../app/app.service';
 
 @Component({
   template: templateString,
-  providers: [UsersService, CheckSignInService]
+  providers: [AppService]
 })
 export class UsersComponent {
-  constructor(private ngFlashMessageService: NgFlashMessageService, private usersService: UsersService, private checkSignInService: CheckSignInService) { }
+  constructor(private ngFlashMessageService: NgFlashMessageService, private appService: AppService) { }
   public datas: any;
   public sessions: any;
   config: any;
@@ -25,9 +24,8 @@ export class UsersComponent {
   }
 
   checkSignIn() {
-    this.checkSignInService.all().subscribe(
+    this.appService.all('users/check_sign_in').subscribe(
       resp => {
-        console.log(resp)
         this.sessions = resp;
       }, e => {
         console.log(e);
@@ -42,7 +40,10 @@ export class UsersComponent {
       limit: this.limit,
       offset: this.pageNow == 1 ? 0 : (this.pageNow - 1) * this.limit
     }
-    this.usersService.getDataForTable(this.params).subscribe(
+    this.datas = {
+      users: null
+    }
+    this.appService.getDataForTable('users', this.params).subscribe(
       resp => {
         this.datas = resp;
         this.config = {
@@ -64,7 +65,7 @@ export class UsersComponent {
   removeUser(id) {
     var confirmation = confirm('are you sure you want to remove the item?');
     if (confirmation) {
-      this.usersService.delete(id).subscribe(
+      this.appService.delete('users', id).subscribe(
         resp => {
           this.ngFlashMessageService.showFlashMessage({
             messages: ["Delete success."],

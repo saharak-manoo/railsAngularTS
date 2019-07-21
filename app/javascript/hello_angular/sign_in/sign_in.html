@@ -1,24 +1,25 @@
 <div class="container">
   <div class="row margin">
     <div class="col-lg-6">
-      <form #signIn="ngForm" (ngSubmit)="onSubmit(signIn.value)">
+      <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
         <div class="sign-in">
           <h3>Sign In</h3>
         </div>
         <div class="group">
-          <input type="text" name="email" [(ngModel)]="email" required>
+          <input type="text" formControlName="email" required [email]="true">
           <span class="highlight"></span>
           <span class="bar"></span>
           <label>Email</label>
         </div>
+
         <div class="group">
-          <input type="password" name="password" [(ngModel)]="password" required>
+          <input type="password" formControlName="password" required>
           <span class="highlight"></span>
           <span class="bar"></span>
           <label>Password</label>
         </div>
 
-        <button class="sign-in btn btn-lg">Sign In</button>
+        <button [disabled]="signInForm.invalid" class="sign-in btn btn-lg">Sign In</button>
       </form>
     </div>
     <div class="col-lg-6">

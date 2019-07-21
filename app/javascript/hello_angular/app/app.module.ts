@@ -12,7 +12,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { NgFlashMessagesModule } from 'ng-flash-messages';
 import { UsersComponent } from '../users/users.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { SessionsComponent } from '../sessions/sessions.component';
+import { SignInComponent } from '../sign_in/sign_in.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 enableProdMode();
 
@@ -20,7 +21,7 @@ const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'homes', component: HomeComponent },
   { path: 'users', component: UsersComponent },
-  { path: 'sign_in', component: SessionsComponent },
+  { path: 'sign_in', component: SignInComponent },
 ];
 
 @NgModule({
@@ -28,7 +29,7 @@ const appRoutes: Routes = [
     AppComponent,
     HomeComponent,
     UsersComponent,
-    SessionsComponent,
+    SignInComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +39,7 @@ const appRoutes: Routes = [
     FormsModule,
     NgFlashMessagesModule.forRoot(),
     TooltipModule.forRoot(),
+    ReactiveFormsModule,
     RouterModule.forRoot(
       appRoutes,
       { useHash: true }

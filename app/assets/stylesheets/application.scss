@@ -184,3 +184,12 @@ input:focus~.highlight {
   cursor: pointer;
   margin-top: 140px;
 }
+
+.ng-valid[required],
+.ng-valid.required {
+  border-bottom: 2px solid #33FF7A;
+}
+
+.ng-invalid:not(form) {
+  border-bottom: 2px solid #a94442;
+}

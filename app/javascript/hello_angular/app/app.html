@@ -16,10 +16,10 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="users" routerLinkActive="active">User</a>
       </li>
-      <li class="nav-item" *ngIf="!sessions.sign_in">
+      <li class="nav-item" *ngIf="!sessions.signed_in">
         <a class="nav-link" routerLink="sign_in" routerLinkActive="active">Sign in</a>
       </li>
-      <li class="nav-item" *ngIf="sessions.sign_in">
+      <li class="nav-item" *ngIf="sessions.signed_in">
         <a class="nav-link" (click)="signOut(sessions.current_user.id)">Sign Out</a>
       </li>
     </ul>

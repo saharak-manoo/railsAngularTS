@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  protect_from_forgery with: :null_session
+  
   def index
     data_table
   end
@@ -11,7 +13,7 @@ class UsersController < ApplicationController
   end
 
   def check_sign_in
-    render json: { sign_in: user_signed_in?, current_user: current_user }
+    render json: { signed_in: user_signed_in?, current_user: current_user }
   end  
 
   private

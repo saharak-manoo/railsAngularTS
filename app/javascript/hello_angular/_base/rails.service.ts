@@ -7,27 +7,35 @@ export class RailsService {
 
   constructor(private http: HttpClient) { }
 
-  all() {
-    return this.http.get('/' + this.resources);
+  all(path) {
+    return this.http.get('/' + path);
   }
 
-  getDataForTable(attrs) {
-    return this.http.get('/' + this.resources, { params: attrs });
+  getDataForTable(path, attrs) {
+    return this.http.get('/' + path, { params: attrs });
   }
 
-  create(attrs) {
-    return this.http.post('/' + this.resources, attrs);
+  create(path, attrs) {
+    return this.http.post('/' + path, attrs);
   }
 
-  find(id) {
-    return this.http.get('/' + this.resources + '/' + id);
+  find(path, id) {
+    return this.http.get('/' + path + '/' + id);
   }
 
-  update(id, attrs) {
-    return this.http.put('/' + this.resources + '/' + id, attrs);
+  update(path, id, attrs) {
+    return this.http.put('/' + path + '/' + id, attrs);
   }
 
-  delete(id) {
-    return this.http.delete('/' + this.resources + '/' + id);
+  delete(path, id) {
+    return this.http.delete('/' + path + '/' + id);
+  }
+
+  signIn(path, attrs) {
+    return this.http.post('/' + path, attrs);
+  }
+
+  signOut(path) {
+    return this.http.delete('/' + path);
   }
 }

@@ -3,7 +3,6 @@ class Devise::SessionsController < DeviseController
   skip_before_action :verify_authenticity_token
   prepend_before_action :require_no_authentication, only: [:new, :create]
   prepend_before_action :allow_params_authentication!, only: :create
-  prepend_before_action :verify_signed_out_user, only: :destroy
   prepend_before_action(only: [:create, :destroy]) { request.env["devise.skip_timeout"] = true }
 
   # GET /resource/sign_in
@@ -19,16 +18,13 @@ class Devise::SessionsController < DeviseController
     self.resource = warden.authenticate!(auth_options)
     set_flash_message!(:notice, :signed_in)
     sign_in(resource_name, resource)
-    yield resource if block_given?
-    respond_with resource, location: after_sign_in_path_for(resource)
+    render json: { signed_in: user_signed_in? }, status: :ok
   end
 
   # DELETE /resource/sign_out
   def destroy
     signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
-    set_flash_message! :notice, :signed_out if signed_out
-    yield if block_given?
-    respond_to_on_destroy
+    render json: { signed_out: signed_out }, status: :ok if signed_out
   end
 
   protected
