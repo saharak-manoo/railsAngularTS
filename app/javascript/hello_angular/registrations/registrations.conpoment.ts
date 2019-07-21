@@ -4,6 +4,7 @@ import { NgFlashMessageService } from "ng-flash-messages";
 import { AppService } from '../app/app.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { User } from '../_model/user';
 
 @Component({
   template: templateString,
@@ -12,32 +13,61 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class RegistrationsComponent {
   constructor(private ngFlashMessageService: NgFlashMessageService, private appService: AppService, private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router) { }
   public datas: any;
+  public user: any[];
   public sessions: any;
-  signInForm: FormGroup;
+  signUpForm: FormGroup;
   loading = false;
   submitted = false;
   returnUrl = '/homes';
 
-  get f() { return this.signInForm.controls; }
+  get f() { return this.signUpForm.controls; }
 
   ngOnInit() {
-    this.signInForm = this.formBuilder.group({
+    this.newUser();
+    this.signUpForm = this.formBuilder.group({
       email: ['', Validators.required],
-      password: ['', Validators.required]
-    });
+      password: ['', Validators.minLength(6)],
+      password_confirmation: ['', Validators.minLength(6)],
+      first_name: ['', Validators.required],
+      last_name: ['', Validators.required],
+      phone_number: ['', Validators.required],
+    }, { validator: this.checkPasswords });
+  }
+
+  newUser() {
+    this.appService.get('users/sign_in').subscribe(
+      resp => {
+        this.user = resp;
+      }, e => {
+        this.ngFlashMessageService.showFlashMessage({
+          messages: [e.message],
+          dismissible: true,
+          timeout: 5000,
+          type: 'danger'
+        });
+      }
+    );
+  }
+
+  checkPasswords(group: FormGroup) {
+    let pass = group.controls.password.value;
+    let confirmPass = group.controls.password_confirmation.value;
+
+    return pass === confirmPass ? null : { notSame: true }
   }
 
   onSubmit() {
-    if (this.signInForm.invalid) {
+    if (this.signUpForm.invalid) {
       return;
     }
 
-    this.appService.create('users/sign_in', { user: { email: this.f.email.value, password: this.f.password.value } }).subscribe(
+    this.appService.create('users', { user: this.user }).subscribe(
       resp => {
-        if (resp) {
+        this.datas = resp
+        if (this.datas.created) {
           this.router.navigate([this.returnUrl]);
           this.ngFlashMessageService.showFlashMessage({
-            messages: ["Sign In success."],
+            messages: ["Sign up and sign in success."],
             dismissible: true,
             timeout: 5000,
             type: "success"
@@ -45,10 +75,10 @@ export class RegistrationsComponent {
         }
       }, e => {
         this.ngFlashMessageService.showFlashMessage({
-          messages: ["Email or password worng."],
+          messages: [e.message],
           dismissible: true,
           timeout: 5000,
-          type: "danger"
+          type: 'danger'
         });
       }
     )

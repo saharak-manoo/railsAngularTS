@@ -34,21 +34,29 @@ export class SignInComponent {
 
     this.appService.signIn('users/sign_in', { user: { email: this.f.email.value, password: this.f.password.value } }).subscribe(
       resp => {
-        if (resp) {
+        this.datas = resp
+        if (this.datas.signed_in) {
           this.router.navigate([this.returnUrl]);
           this.ngFlashMessageService.showFlashMessage({
-            messages: ["Sign In success."],
+            messages: ['Sign In success.'],
             dismissible: true,
             timeout: 5000,
-            type: "success"
+            type: 'success'
+          });
+        } else {
+          this.ngFlashMessageService.showFlashMessage({
+            messages: ['Email or password worng.'],
+            dismissible: true,
+            timeout: 5000,
+            type: 'danger'
           });
         }
       }, e => {
         this.ngFlashMessageService.showFlashMessage({
-          messages: ["Email or password worng."],
+          messages: [e.message],
           dismissible: true,
           timeout: 5000,
-          type: "danger"
+          type: 'danger'
         });
       }
     )

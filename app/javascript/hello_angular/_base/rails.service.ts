@@ -8,34 +8,38 @@ export class RailsService {
   constructor(private http: HttpClient) { }
 
   all(path) {
-    return this.http.get('/' + path);
+    return this.http.get<any[]>('/' + path);
+  }
+
+  get(path) {
+    return this.http.get<any[]>('/' + path);
   }
 
   getDataForTable(path, attrs) {
-    return this.http.get('/' + path, { params: attrs });
+    return this.http.get<any[]>('/' + path, { params: attrs });
   }
 
   create(path, attrs) {
-    return this.http.post('/' + path, attrs);
+    return this.http.post<any[]>('/' + path, attrs);
   }
 
   find(path, id) {
-    return this.http.get('/' + path + '/' + id);
+    return this.http.get<any[]>('/' + path + '/' + id);
   }
 
   update(path, id, attrs) {
-    return this.http.put('/' + path + '/' + id, attrs);
+    return this.http.put<any[]>('/' + path + '/' + id, attrs);
   }
 
   delete(path, id) {
-    return this.http.delete('/' + path + '/' + id);
+    return this.http.delete<any[]>('/' + path + '/' + id);
   }
 
   signIn(path, attrs) {
-    return this.http.post('/' + path, attrs);
+    return this.http.post<any[]>('/' + path, attrs);
   }
 
   signOut(path) {
-    return this.http.delete('/' + path);
+    return this.http.delete<any[]>('/' + path);
   }
 }

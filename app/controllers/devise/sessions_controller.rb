@@ -8,9 +8,7 @@ class Devise::SessionsController < DeviseController
   # GET /resource/sign_in
   def new
     self.resource = resource_class.new(sign_in_params)
-    clean_up_passwords(resource)
-    yield resource if block_given?
-    respond_with(resource, serialize_options(resource))
+    render json: { signed_in: user_signed_in?, user: self.resource }, status: :ok if self.resource.present?    
   end
 
   # POST /resource/sign_in
