@@ -193,3 +193,8 @@ input:focus~.highlight {
 .ng-invalid:not(form) {
   border-bottom: 2px solid #e71b47;
 }
+
+.navbar .dropdown-menu-right {
+  right: 0;
+  left: auto;
+}

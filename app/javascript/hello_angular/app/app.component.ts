@@ -13,6 +13,7 @@ export class AppComponent {
   constructor(private ngFlashMessageService: NgFlashMessageService, private appService: AppService, private route: ActivatedRoute, private router: Router) { }
   public sessions: {};
   activeTab: string;
+  signInMenu = false;
 
   ngOnInit() {
     this.sessions = {
@@ -61,5 +62,9 @@ export class AppComponent {
 
   activeNavTab(tab) {
     this.activeTab = tab;
+  }
+
+  showSignInMenu() {
+    this.signInMenu = !this.signInMenu;
   }
 }

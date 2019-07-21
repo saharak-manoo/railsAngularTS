@@ -14,6 +14,11 @@ import { UsersComponent } from '../users/users.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { SignInComponent } from '../sign_in/sign_in.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatMenuModule } from '@angular/material/menu'
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 
 enableProdMode();
 
@@ -40,6 +45,12 @@ const appRoutes: Routes = [
     NgFlashMessagesModule.forRoot(),
     TooltipModule.forRoot(),
     ReactiveFormsModule,
+    MatMenuModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    NgbModule,
+    NgbPaginationModule,
+    NgbAlertModule,
     RouterModule.forRoot(
       appRoutes,
       { useHash: true }
