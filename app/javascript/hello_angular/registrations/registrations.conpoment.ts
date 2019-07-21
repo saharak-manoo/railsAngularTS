@@ -16,8 +16,6 @@ export class RegistrationsComponent {
   user: any;
   public sessions: any;
   signUpForm: FormGroup;
-  loading = false;
-  submitted = false;
   returnUrl = '/homes';
 
   get f() { return this.signUpForm.controls; }
@@ -90,7 +88,7 @@ export class RegistrationsComponent {
     formData.append('user[first_name]', this.user.first_name);
     formData.append('user[last_name]', this.user.last_name);
     formData.append('user[phone_number]', this.user.phone_number);
-    formData.append('user[photo]', this.user.photo);
+    if (this.user.photo) { formData.append('user[photo]', this.user.photo); }
 
     this.appService.create('users', formData).subscribe(
       resp => {
@@ -98,10 +96,10 @@ export class RegistrationsComponent {
         if (this.datas.created) {
           this.router.navigate([this.returnUrl]);
           this.ngFlashMessageService.showFlashMessage({
-            messages: ["Sign up and sign in success."],
+            messages: ['Sign up and sign in success.'],
             dismissible: true,
             timeout: 5000,
-            type: "success"
+            type: 'success'
           });
         }
       }, e => {

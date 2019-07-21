@@ -11,7 +11,7 @@ import { MatDialog } from '@angular/material';
 })
 export class UsersComponent {
   constructor(private ngFlashMessageService: NgFlashMessageService, private appService: AppService, public dialog: MatDialog) { }
-  public datas: any;
+  public users: any;
   public sessions: any;
   config: any;
   search: any;
@@ -33,7 +33,12 @@ export class UsersComponent {
       resp => {
         this.sessions = resp;
       }, e => {
-        console.log(e);
+        this.ngFlashMessageService.showFlashMessage({
+          messages: [e.message],
+          dismissible: true,
+          timeout: 5000,
+          type: 'danger'
+        });
       }
     )
   }
@@ -45,19 +50,24 @@ export class UsersComponent {
       limit: this.limit,
       offset: this.pageNow == 1 ? 0 : (this.pageNow - 1) * this.limit
     }
-    this.datas = {
+    this.users = {
       users: null
     }
     this.appService.getDataForTable('users', this.params).subscribe(
       resp => {
-        this.datas = resp;
+        this.users = resp;
         this.config = {
           itemsPerPage: this.params.limit,
           currentPage: this.pageNow,
-          totalItems: this.datas.total
+          totalItems: this.users.total
         };
       }, e => {
-        console.log(e);
+        this.ngFlashMessageService.showFlashMessage({
+          messages: [e.message],
+          dismissible: true,
+          timeout: 5000,
+          type: 'danger'
+        });
       }
     )
   }
@@ -80,14 +90,19 @@ export class UsersComponent {
         this.appService.delete('users', id).subscribe(
           resp => {
             this.ngFlashMessageService.showFlashMessage({
-              messages: ["Delete success."],
+              messages: ['Delete success.'],
               dismissible: true,
               timeout: 5000,
-              type: "success"
+              type: 'success'
             });
             this.loadTable()
           }, e => {
-            console.log(e);
+            this.ngFlashMessageService.showFlashMessage({
+              messages: [e.message],
+              dismissible: true,
+              timeout: 5000,
+              type: 'danger'
+            });
           }
         );
       }

@@ -35,7 +35,12 @@ export class AppComponent {
       resp => {
         this.sessions = resp;
       }, e => {
-        console.log(e);
+        this.ngFlashMessageService.showFlashMessage({
+          messages: [e.message],
+          dismissible: true,
+          timeout: 5000,
+          type: 'danger'
+        });
       }
     )
   }
@@ -71,7 +76,12 @@ export class AppComponent {
             this.checkSignIn();
             this.router.navigate(['homes']);
           }, e => {
-            console.log(e);
+            this.ngFlashMessageService.showFlashMessage({
+              messages: [e.message],
+              dismissible: true,
+              timeout: 5000,
+              type: 'danger'
+            });
           }
         );
       }

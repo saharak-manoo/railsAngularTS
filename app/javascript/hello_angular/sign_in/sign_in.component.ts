@@ -14,8 +14,6 @@ export class SignInComponent {
   public datas: any;
   public sessions: any;
   signInForm: FormGroup;
-  loading = false;
-  submitted = false;
   returnUrl = '/homes';
 
   get f() { return this.signInForm.controls; }

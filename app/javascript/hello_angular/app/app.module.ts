@@ -22,6 +22,7 @@ import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap'
 import { ConfirmDialogComponent } from '../confirm_dialog/confirm_dialog.conponent';
 import { CustomMaterialModule } from '../custom_material/custom_material.module';
 import { RegistrationsComponent } from '../registrations/registrations.conpoment';
+import { ShowUserComponent } from '../users/show_user.compnent';
 
 enableProdMode();
 
@@ -31,6 +32,7 @@ const appRoutes: Routes = [
   { path: 'users', component: UsersComponent },
   { path: 'sign_in', component: SignInComponent },
   { path: 'sign_up', component: RegistrationsComponent },
+  { path: 'users/:id', component: ShowUserComponent },
 ];
 
 @NgModule({
@@ -41,6 +43,7 @@ const appRoutes: Routes = [
     SignInComponent,
     ConfirmDialogComponent,
     RegistrationsComponent,
+    ShowUserComponent,
   ],
   imports: [
     BrowserModule,

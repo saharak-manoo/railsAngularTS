@@ -9,7 +9,7 @@
         <input aria-label="Search" [(ngModel)]="search" (keyup)="loadTable()" placeholder="Search" type="text">
       </div>
     </div>
-    <table class="table" *ngIf="datas.users">
+    <table class="table" *ngIf="users.users">
       <thead>
         <tr>
           <th>ID</th>
@@ -23,7 +23,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of datas.users | paginate: config ">
+        <tr *ngFor="let user of users.users | paginate: config ">
           <td>{{ user.id }}</td>
           <td><a routerLink="/users/{{ user.id }}">{{ user.email }}</a></td>
           <td><a routerLink="/users/{{ user.id }}">{{ user.first_name }}</a></td>

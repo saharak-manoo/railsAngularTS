@@ -1,8 +1,21 @@
 class UsersController < ApplicationController
-  protect_from_forgery with: :null_session
   
   def index
     data_table
+  end
+
+  def show
+    @user = User.find_by(id: params[:id])
+    render json: { user: @user, photo_url: @user&.photo&.url }
+  end
+
+  def update
+    @user = User.find_by(id: params[:id])
+    if @user.update(user_params)
+      render json: { updated: true }, status: :ok
+    else
+      render json: { updated: false, errors: @user.errors }, status: 500
+    end  
   end
 
   def destroy
@@ -42,5 +55,9 @@ class UsersController < ApplicationController
     @users = @users.limit(params[:limit]).offset(params[:offset])
 
     render json: { users: @users, total: total }
+  end
+
+  def user_params
+    params.require(:user).permit(:email, :password, :first_name, :last_name, :phone_number, :photo)
   end
 end
