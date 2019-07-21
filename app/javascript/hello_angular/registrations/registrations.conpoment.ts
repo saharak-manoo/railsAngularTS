@@ -13,7 +13,7 @@ import { User } from '../_model/user';
 export class RegistrationsComponent {
   constructor(private ngFlashMessageService: NgFlashMessageService, private appService: AppService, private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router) { }
   public datas: any;
-  public user: any[];
+  user: any;
   public sessions: any;
   signUpForm: FormGroup;
   loading = false;
@@ -24,17 +24,21 @@ export class RegistrationsComponent {
 
   ngOnInit() {
     this.newUser();
+    const regexPattern = /\-?\d*\.?\d{1,2}/;
     this.signUpForm = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.minLength(6)],
       password_confirmation: ['', Validators.minLength(6)],
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
-      phone_number: ['', Validators.required],
+      phone_number: ['', Validators.pattern(regexPattern)],
     }, { validator: this.checkPasswords });
   }
 
   newUser() {
+    this.user = {
+      photo: null,
+    }
     this.appService.get('users/sign_in').subscribe(
       resp => {
         this.user = resp;
@@ -56,12 +60,39 @@ export class RegistrationsComponent {
     return pass === confirmPass ? null : { notSame: true }
   }
 
+  onSelectFile(event: any) {
+    event.preventDefault();
+
+    let element: HTMLElement = document.getElementById('photo') as HTMLElement;
+    element.click();
+  }
+
+  onFileChange(event) {
+    if (event.target.files && event.target.files[0]) {
+      const file = event.target.files[0];
+      this.user.photo = file;
+
+      const reader = new FileReader();
+      reader.onload = e => this.user.photo_url = reader.result;
+
+      reader.readAsDataURL(file);
+    }
+  }
+
   onSubmit() {
     if (this.signUpForm.invalid) {
       return;
     }
 
-    this.appService.create('users', { user: this.user }).subscribe(
+    const formData = new FormData();
+    formData.append('user[email]', this.user.email);
+    formData.append('user[password]', this.user.password);
+    formData.append('user[first_name]', this.user.first_name);
+    formData.append('user[last_name]', this.user.last_name);
+    formData.append('user[phone_number]', this.user.phone_number);
+    formData.append('user[photo]', this.user.photo);
+
+    this.appService.create('users', formData).subscribe(
       resp => {
         this.datas = resp
         if (this.datas.created) {

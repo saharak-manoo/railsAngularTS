@@ -8,7 +8,7 @@ class Devise::SessionsController < DeviseController
   # GET /resource/sign_in
   def new
     self.resource = resource_class.new(sign_in_params)
-    render json: { signed_in: user_signed_in?, user: self.resource }, status: :ok if self.resource.present?    
+    render json: { signed_in: user_signed_in?, user: self.resource, photo_url: self.resource.photo.url }, status: :ok if self.resource.present?    
   end
 
   # POST /resource/sign_in

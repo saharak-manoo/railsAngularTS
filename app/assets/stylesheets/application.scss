@@ -35,6 +35,25 @@ body {
   margin-right: 100px;
 }
 
+img {
+  border-radius: 50%;
+}
+
+.img-sm {
+  height: 25px;
+  width: 25px;
+}
+
+img.upload-photo {
+  cursor: pointer;
+  height: 200px;
+  width: 200px;
+}
+
+.margin-l {
+  margin-left: -10%;
+}
+
 .set-margin {
   margin: 3%;
   margin-top: 5%;

@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   end
 
   def check_sign_in
-    render json: { signed_in: user_signed_in?, current_user: current_user }
+    render json: { signed_in: user_signed_in?, current_user: current_user, photo_url: current_user&.photo&.url }
   end  
 
   private

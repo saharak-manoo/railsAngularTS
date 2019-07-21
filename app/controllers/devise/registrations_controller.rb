@@ -20,7 +20,7 @@ class Devise::RegistrationsController < DeviseController
       if resource.active_for_authentication?
         set_flash_message! :notice, :signed_up
         sign_up(resource_name, resource)
-        render json: { created: true, user: resource }, status: :ok
+        render json: { created: true, user: resource, photo_url: resource.photo.url }, status: :ok
       else
         render json: { errors: resource.errors }, status: :ok
       end
@@ -128,7 +128,7 @@ class Devise::RegistrationsController < DeviseController
   end
 
   def sign_up_params
-    params.require(:user).permit(:email, :password, :first_name, :last_name, :phone_number)
+    params.require(:user).permit(:email, :password, :first_name, :last_name, :phone_number, :photo)
   end
 
   def account_update_params
