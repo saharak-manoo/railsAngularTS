@@ -2,6 +2,7 @@
   <div class="text-center">
     <h3>{{ datas.user.first_name }} {{ datas.user.last_name }}</h3>
   </div>
+
   <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
     <div class="row margin">
       <div class="col-lg-6">
@@ -50,4 +51,6 @@
     </div>
     <button [disabled]="userForm.invalid" class="text-center btn btn-lg">Update</button>
   </form>
+  <br>
+  <span class="text-danger" *ngIf="!sessions.role_admin">Only update for user admin</span>
 </div>

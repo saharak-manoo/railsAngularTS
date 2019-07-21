@@ -26,7 +26,10 @@ class UsersController < ApplicationController
   end
 
   def check_sign_in
-    render json: { signed_in: user_signed_in?, current_user: current_user, photo_url: current_user&.photo&.url }
+    render json: { signed_in: user_signed_in?, 
+                   current_user: current_user, 
+                   photo_url: current_user&.photo&.url,
+                   role_admin: current_user.has_role?(:admin) }
   end  
 
   private
