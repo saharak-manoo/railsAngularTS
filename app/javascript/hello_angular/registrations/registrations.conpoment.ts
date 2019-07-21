@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import templateString from './sign_in.html';
+import templateString from './registrations.html';
 import { NgFlashMessageService } from "ng-flash-messages";
 import { AppService } from '../app/app.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -9,7 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   template: templateString,
   providers: [AppService]
 })
-export class SignInComponent {
+export class RegistrationsComponent {
   constructor(private ngFlashMessageService: NgFlashMessageService, private appService: AppService, private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router) { }
   public datas: any;
   public sessions: any;
@@ -32,7 +32,7 @@ export class SignInComponent {
       return;
     }
 
-    this.appService.signIn('users/sign_in', { user: { email: this.f.email.value, password: this.f.password.value } }).subscribe(
+    this.appService.create('users/sign_in', { user: { email: this.f.email.value, password: this.f.password.value } }).subscribe(
       resp => {
         if (resp) {
           this.router.navigate([this.returnUrl]);

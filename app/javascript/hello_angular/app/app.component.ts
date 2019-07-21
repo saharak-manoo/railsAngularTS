@@ -48,13 +48,11 @@ export class AppComponent {
     this.signInMenu = !this.signInMenu;
   }
 
-  signOut(): void {
+  signOut() {
     const message = 'Are you sure you want to do this?';
-
     const dialogData = new ConfirmDialogModel('Confirm Action', message);
-
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      maxWidth: "400px",
+      maxWidth: '400px',
       data: dialogData
     });
 

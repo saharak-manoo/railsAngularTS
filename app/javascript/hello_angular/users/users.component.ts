@@ -2,13 +2,15 @@ import { Component } from '@angular/core';
 import templateString from './users.html';
 import { NgFlashMessageService } from "ng-flash-messages";
 import { AppService } from '../app/app.service';
+import { ConfirmDialogModel, ConfirmDialogComponent } from '../confirm_dialog/confirm_dialog.conponent';
+import { MatDialog } from '@angular/material';
 
 @Component({
   template: templateString,
   providers: [AppService]
 })
 export class UsersComponent {
-  constructor(private ngFlashMessageService: NgFlashMessageService, private appService: AppService) { }
+  constructor(private ngFlashMessageService: NgFlashMessageService, private appService: AppService, public dialog: MatDialog) { }
   public datas: any;
   public sessions: any;
   config: any;
@@ -66,21 +68,29 @@ export class UsersComponent {
   }
 
   removeUser(id) {
-    var confirmation = confirm('are you sure you want to remove the item?');
-    if (confirmation) {
-      this.appService.delete('users', id).subscribe(
-        resp => {
-          this.ngFlashMessageService.showFlashMessage({
-            messages: ["Delete success."],
-            dismissible: true,
-            timeout: 5000,
-            type: "success"
-          });
-          this.loadTable()
-        }, e => {
-          console.log(e);
-        }
-      );
-    }
+    const message = 'Are you sure you want to do this?';
+    const dialogData = new ConfirmDialogModel('Confirm Action', message);
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      maxWidth: '400px',
+      data: dialogData
+    });
+
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      if (dialogResult) {
+        this.appService.delete('users', id).subscribe(
+          resp => {
+            this.ngFlashMessageService.showFlashMessage({
+              messages: ["Delete success."],
+              dismissible: true,
+              timeout: 5000,
+              type: "success"
+            });
+            this.loadTable()
+          }, e => {
+            console.log(e);
+          }
+        );
+      }
+    });
   }
 }
