@@ -12,14 +12,22 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class AppComponent {
   constructor(private ngFlashMessageService: NgFlashMessageService, private appService: AppService, private route: ActivatedRoute, private router: Router) { }
   public sessions: {};
-  ngOnInit() {
-    this.checkSignIn();
-  }
+  activeTab: string;
 
-  checkSignIn() {
+  ngOnInit() {
     this.sessions = {
       signed_in: false
     }
+    this.router.events.subscribe(
+      (event) => {
+        if (event) {
+          this.activeTab = 'homes';
+          this.checkSignIn();
+        }
+      });
+  }
+
+  checkSignIn() {
     this.appService.all('users/check_sign_in').subscribe(
       resp => {
         this.sessions = resp;
@@ -38,16 +46,20 @@ export class AppComponent {
             this.ngFlashMessageService.showFlashMessage({
               messages: ["Sign Out success."],
               dismissible: true,
-              timeout: true,
+              timeout: 5000,
               type: "success"
             });
           }
           this.checkSignIn();
-          this.router.navigate(['sign_in']);
+          this.router.navigate(['homes']);
         }, e => {
           console.log(e);
         }
       );
     }
+  }
+
+  activeNavTab(tab) {
+    this.activeTab = tab;
   }
 }

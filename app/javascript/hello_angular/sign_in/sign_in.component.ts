@@ -36,9 +36,20 @@ export class SignInComponent {
       resp => {
         if (resp) {
           this.router.navigate([this.returnUrl]);
+          this.ngFlashMessageService.showFlashMessage({
+            messages: ["Sign In success."],
+            dismissible: true,
+            timeout: 5000,
+            type: "success"
+          });
         }
       }, e => {
-        console.log(e);
+        this.ngFlashMessageService.showFlashMessage({
+          messages: ["Email or password worng."],
+          dismissible: true,
+          timeout: 5000,
+          type: "danger"
+        });
       }
     )
   }

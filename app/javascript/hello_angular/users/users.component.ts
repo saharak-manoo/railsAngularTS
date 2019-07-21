@@ -24,6 +24,9 @@ export class UsersComponent {
   }
 
   checkSignIn() {
+    this.sessions = {
+      signed_in: false
+    }
     this.appService.all('users/check_sign_in').subscribe(
       resp => {
         this.sessions = resp;
@@ -70,7 +73,7 @@ export class UsersComponent {
           this.ngFlashMessageService.showFlashMessage({
             messages: ["Delete success."],
             dismissible: true,
-            timeout: true,
+            timeout: 5000,
             type: "success"
           });
           this.loadTable()

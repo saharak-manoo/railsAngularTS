@@ -8,15 +8,16 @@
 
   <div class="collapse navbar-collapse" id="basicExampleNav">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item active" [ngClass]="{ 'active': activeTab === 'homes'}" (click)="activeNavTab('homes')">
         <a class="nav-link" routerLink="homes" routerLinkActive="active">Home
           <span class="sr-only">(current)</span>
         </a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" [ngClass]="{ 'active': activeTab === 'users'}" (click)="activeNavTab('users')">
         <a class="nav-link" routerLink="users" routerLinkActive="active">User</a>
       </li>
-      <li class="nav-item" *ngIf="!sessions.signed_in">
+      <li class="nav-item" *ngIf="!sessions.signed_in" [ngClass]="{ 'active': activeTab === 'sign_in'}"
+        (click)="activeNavTab('sign_in')">
         <a class="nav-link" routerLink="sign_in" routerLinkActive="active">Sign in</a>
       </li>
       <li class="nav-item" *ngIf="sessions.signed_in">
