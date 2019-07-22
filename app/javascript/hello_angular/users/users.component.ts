@@ -19,7 +19,6 @@ export class UsersComponent {
   loading: boolean = false;
   page = new Page();
   rows = new Array<User>();
-  columns = [{ prop: 'id', name: 'ID' }, { prop: 'email', name: 'Email' }, { prop: 'first_name', name: 'First Name' }]
 
   ngOnInit() {
     this.checkSignIn();
@@ -65,11 +64,15 @@ export class UsersComponent {
 
   search(event) {
     this.page.search = event.target.value.toLowerCase();
-    this.loadTable()
+    this.loadTable();
   }
 
-  sort() {
+  sort(event) {
+    let sort = event.sorts[0]
+    this.page.sort = sort.prop;
+    this.page.order = sort.dir;
     this.loading = true;
+    this.loadTable();
   }
 
   pageChanged(event) {

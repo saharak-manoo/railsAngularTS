@@ -11,9 +11,51 @@
     </div>
     <div>
       <ngx-datatable class="material" [loadingIndicator]="loading" [externalSorting]="true" [rows]="rows"
-        [columns]="columns" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'"
-        [externalPaging]="true" [count]="page.total" [offset]="page.page_now" [limit]="page.limit"
-        (page)="pageChanged($event)" (sort)="sort($event)">>
+        [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [externalPaging]="true"
+        [count]="page.total" [offset]="page.page_now" [limit]="page.limit" (page)="pageChanged($event)"
+        (sort)="sort($event)">
+
+        <ngx-datatable-column prop="id" name="ID">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{ row.id }}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column prop="email" name="Email">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <a class="nav-link" routerLink="/users/{{ row.id }}" routerLinkActive="active">{{ row.email }}</a>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column prop="first_name" name="Full Name">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <a class="nav-link" routerLink="/users/{{ row.id }}" routerLinkActive="active">{{ row.full_name }}</a>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column prop="phone_number" name="Phone Number">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{ row.phone_number }}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column prop="created_at" name="Created At">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{ row.created_at_formatted }}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column prop="updated_at" name="Updated At">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{ row.updated_at_formatted }}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column>
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <button [disabled]="!sessions.signed_in" class="btn btn-danger" (click)="removeUser(row.id)">Delete</button>
+          </ng-template>
+        </ngx-datatable-column>
       </ngx-datatable>
     </div>
     <!-- <table class=" table" *ngIf="datas.users">

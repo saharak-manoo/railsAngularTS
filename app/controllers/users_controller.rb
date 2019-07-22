@@ -59,7 +59,19 @@ class UsersController < ApplicationController
     offset = params[:page_now].to_i * limit
     @users = @users.limit(limit).offset(offset)
 
-    render json: { users: @users, 
+    # sort and order
+    if params[:sort].present?
+      @users = @users.order("#{params[:sort]} #{params[:order]}")
+    end  
+
+    render json: { users: @users.decorate.as_json(decorator_methods: [
+                                                  :full_name,
+                                                  :created_at_formatted,
+                                                  :updated_at_formatted,
+                                                  :deleted_at_formatted,
+                                                  :photo,
+                                                  :photo_url
+                                                  ]),
                    page: { limit: limit,
                            total: total,
                            totalPages: (total / limit),
