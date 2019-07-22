@@ -13,14 +13,12 @@ import { User } from '../_model/user';
   providers: [AppService]
 })
 export class UsersComponent {
-  constructor(private ngFlashMessageService: NgFlashMessageService, private appService: AppService, public dialog: MatDialog) { this.page.offset = 0; this.page.limit = 10; }
+  constructor(private ngFlashMessageService: NgFlashMessageService, private appService: AppService, public dialog: MatDialog) { this.page.page_now = 0; this.page.limit = 10; }
   public datas: any;
   public sessions: any;
-  search: any;
   page = new Page();
   rows = new Array<User>();
-  columns = [
-    { prop: 'id', name: 'ID' }, { prop: 'email', name: 'Email' }]
+  columns = [{ prop: 'id', name: 'ID' }, { prop: 'email', name: 'Email' }, { prop: 'first_name', name: 'First Name' }]
 
   ngOnInit() {
     this.checkSignIn();
@@ -51,7 +49,6 @@ export class UsersComponent {
         this.datas = resp;
         this.page = this.datas.page;
         this.rows = this.datas.users;
-        console.log(this.rows)
       }, e => {
         this.ngFlashMessageService.showFlashMessage({
           messages: [e.message],
@@ -64,7 +61,7 @@ export class UsersComponent {
   }
 
   pageChanged(event) {
-    this.page.offset = this.page.limit * event.offset
+    this.page.page_now = event.offset
     this.loadTable();
   }
 
