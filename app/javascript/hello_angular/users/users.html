@@ -10,10 +10,29 @@
       </div>
     </div>
     <div>
-      <ngx-datatable class="material" [loadingIndicator]="loading" [externalSorting]="true" [rows]="rows"
-        [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [externalPaging]="true"
-        [count]="page.total" [offset]="page.page_now" [limit]="page.limit" (page)="pageChanged($event)"
-        (sort)="sort($event)">
+      <ngx-datatable #usersTable class="material expandable" [loadingIndicator]="loading" [externalSorting]="true"
+        [rows]="rows" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'"
+        [externalPaging]="true" [count]="page.total" [offset]="page.page_now" [limit]="page.limit"
+        (page)="pageChanged($event)" (sort)="sort($event)">
+
+        <!-- Row Detail Template -->
+        <ngx-datatable-row-detail [rowHeight]="100" #usersDetailRow>
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+            <div class="padding-left-35">
+              <div><strong>Details</strong></div>
+              <div><img [src]="row.photo_url" class="img-lg"> Full Name: {{ row.full_name }}</div>
+            </div>
+          </ng-template>
+        </ngx-datatable-row-detail>
+
+        <ngx-datatable-column [width]="50" [resizeable]="false" [sortable]="false" [draggable]="false"
+          [canAutoResize]="false">
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            <a href="javascript:void(0)" [class.datatable-icon-right]="!expanded" [class.datatable-icon-down]="expanded"
+              title="Expand/Collapse Row" (click)="toggleExpandRow(row)">
+            </a>
+          </ng-template>
+        </ngx-datatable-column>
 
         <ngx-datatable-column prop="id" name="ID">
           <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
@@ -53,7 +72,8 @@
 
         <ngx-datatable-column>
           <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-            <button [disabled]="!sessions.signed_in" class="btn btn-danger" (click)="removeUser(row.id)">Delete</button>
+            <button [disabled]="!sessions.current_user.admin" class="btn btn-danger"
+              (click)="removeUser(row.id)">Delete</button>
           </ng-template>
         </ngx-datatable-column>
       </ngx-datatable>

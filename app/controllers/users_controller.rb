@@ -27,9 +27,19 @@ class UsersController < ApplicationController
 
   def check_sign_in
     render json: { signed_in: user_signed_in?, 
-                   current_user: current_user, 
-                   photo_url: current_user&.photo&.url,
-                   role_admin: current_user&.has_role?(:admin) }
+                   current_user: current_user&.decorate.as_json(
+                                              decorator_methods: [
+                                                :full_name,
+                                                :admin,
+                                                :roles,
+                                                :created_at_formatted,
+                                                :updated_at_formatted,
+                                                :deleted_at_formatted,
+                                                :photo,
+                                                :photo_url
+                                              ]) 
+                  }
+                                            
   end  
 
   private
@@ -64,20 +74,23 @@ class UsersController < ApplicationController
       @users = @users.order("#{params[:sort]} #{params[:order]}")
     end  
 
-    render json: { users: @users.decorate.as_json(decorator_methods: [
-                                                  :full_name,
-                                                  :created_at_formatted,
-                                                  :updated_at_formatted,
-                                                  :deleted_at_formatted,
-                                                  :photo,
-                                                  :photo_url
-                                                  ]),
+    render json: { users: @users.decorate.as_json(
+                                decorator_methods: [
+                                  :full_name,
+                                  :admin,
+                                  :roles,
+                                  :created_at_formatted,
+                                  :updated_at_formatted,
+                                  :deleted_at_formatted,
+                                  :photo,
+                                  :photo_url
+                                ]),
                    page: { limit: limit,
                            total: total,
                            totalPages: (total / limit),
                            page_now: params[:page_now] }
                   }
-  end
+  end 
 
   def user_params
     params.require(:user).permit(:email, :password, :first_name, :last_name, :phone_number, :photo)

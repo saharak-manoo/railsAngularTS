@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { ConfirmDialogModel, ConfirmDialogComponent } from '../confirm_dialog/confirm_dialog.conponent';
 import { MatDialog } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { User } from '../_model/user';
 
 @Component({
   template: templateString,
@@ -35,7 +36,7 @@ export class ShowUserComponent {
 
   checkSignIn() {
     this.sessions = {
-      signed_in: false
+      current_user: new Array<User>()
     }
 
     this.appService.all('users/check_sign_in').subscribe(

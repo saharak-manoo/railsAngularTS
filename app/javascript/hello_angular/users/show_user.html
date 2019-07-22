@@ -49,8 +49,8 @@
         </div>
       </div>
     </div>
-    <button [disabled]="userForm.invalid || !sessions.role_admin" class="text-center btn btn-lg">Update</button>
+    <button [disabled]="userForm.invalid || !sessions.current_user.admin" class="text-center btn btn-lg">Update</button>
   </form>
   <br>
-  <span class="text-danger" *ngIf="!sessions.role_admin">Only update for user admin</span>
+  <span class="text-danger" *ngIf="!sessions.current_user.admin">Only update for user admin</span>
 </div>

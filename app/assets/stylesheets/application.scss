@@ -51,6 +51,11 @@ img {
   width: 25px;
 }
 
+.img-lg {
+  height: 50px;
+  width: 50px;
+}
+
 img.upload-photo {
   cursor: pointer;
   height: 200px;
@@ -99,7 +104,7 @@ input {
   display: block;
   width: 300px;
   border: none;
-  border-bottom: 1px solid #5264AE;
+  border-bottom: 1px solid rgb(47, 79, 207);
   margin-bottom: 20px;
 }
 
@@ -143,7 +148,8 @@ input:valid~label {
   width: 0;
   bottom: 1px;
   position: absolute;
-  background: #33FF7A;
+  background: rgb(47, 79, 207);
+  margin-bottom: 20px;
   transition: 0.2s ease all;
   -moz-transition: 0.2s ease all;
   -webkit-transition: 0.2s ease all;
@@ -184,7 +190,7 @@ input:focus~.highlight {
 /* ANIMATIONS ================ */
 @-webkit-keyframes inputHighlighter {
   from {
-    background: #33FF7A;
+    background: rgb(47, 79, 207);
   }
 
   to {
@@ -195,7 +201,7 @@ input:focus~.highlight {
 
 @-moz-keyframes inputHighlighter {
   from {
-    background: #33FF7A;
+    background: rgb(47, 79, 207);
   }
 
   to {
@@ -206,7 +212,7 @@ input:focus~.highlight {
 
 @keyframes inputHighlighter {
   from {
-    background: #33FF7A;
+    background: rgb(47, 79, 207);
   }
 
   to {

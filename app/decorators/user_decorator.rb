@@ -30,8 +30,15 @@ class UserDecorator < ApplicationDecorator
     photo&.url
   end
 
+  def admin
+    object.has_role?(:admin)
+  end
+
+  def roles
+    object.roles
+  end
+
   def datetime_formatted(date)
     date.strftime('%d/%m/%Y เมื่อเวลา %H:%M') rescue ''
-  end
-  
+  end  
 end

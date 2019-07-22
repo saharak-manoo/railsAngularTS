@@ -1,11 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import templateString from './users.html';
 import { NgFlashMessageService } from "ng-flash-messages";
 import { AppService } from '../app/app.service';
 import { ConfirmDialogModel, ConfirmDialogComponent } from '../confirm_dialog/confirm_dialog.conponent';
 import { MatDialog } from '@angular/material';
 import { Page } from '../_model/page';
-import { PagedData } from '../_model/paged_data';
 import { User } from '../_model/user';
 
 @Component({
@@ -13,12 +12,14 @@ import { User } from '../_model/user';
   providers: [AppService]
 })
 export class UsersComponent {
-  constructor(private ngFlashMessageService: NgFlashMessageService, private appService: AppService, public dialog: MatDialog) { this.page.page_now = 0; this.page.limit = 10; }
+  constructor(private ngFlashMessageService: NgFlashMessageService, private appService: AppService, public dialog: MatDialog) { }
   public datas: any;
-  public sessions: any;
+  sessions: any;
   loading: boolean = false;
   page = new Page();
   rows = new Array<User>();
+  expanded: any = {};
+  @ViewChild('usersTable', { static: false }) table: any;
 
   ngOnInit() {
     this.checkSignIn();
@@ -27,7 +28,7 @@ export class UsersComponent {
 
   checkSignIn() {
     this.sessions = {
-      signed_in: false
+      current_user: new Array<User>()
     }
     this.appService.all('users/check_sign_in').subscribe(
       resp => {
@@ -78,6 +79,10 @@ export class UsersComponent {
   pageChanged(event) {
     this.page.page_now = event.offset
     this.loadTable();
+  }
+
+  toggleExpandRow(row) {
+    this.table.rowDetail.toggleExpandRow(row);
   }
 
   removeUser(id) {
