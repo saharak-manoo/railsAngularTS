@@ -385,15 +385,6 @@ $datatable-summary-row-background-hover: #ddd !default;
           background-color: $datatable-pager-background-hover;
         }
       }
-
-      .datatable-icon-left,
-      .datatable-icon-skip,
-      .datatable-icon-right,
-      .datatable-icon-prev {
-        font-size: 20px;
-        line-height: 20px;
-        padding: 0 3px;
-      }
     }
   }
 
@@ -501,4 +492,40 @@ $datatable-summary-row-background-hover: #ddd !default;
   vertical-align: middle;
   font-weight: 900;
   color: #009688;
+}
+
+.datatable-icon-left:before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f053";
+  display: inline-block;
+  padding-right: 10px;
+  vertical-align: middle;
+  font-weight: 700;
+}
+
+.datatable-icon-right:before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f054";
+  display: inline-block;
+  padding-right: 10px;
+  vertical-align: middle;
+  font-weight: 700;
+}
+
+.datatable-icon-skip:before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f101";
+  display: inline-block;
+  padding-right: 10px;
+  vertical-align: middle;
+  font-weight: 700;
+}
+
+.datatable-icon-prev:before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f100";
+  display: inline-block;
+  padding-right: 10px;
+  vertical-align: middle;
+  font-weight: 700;
 }
