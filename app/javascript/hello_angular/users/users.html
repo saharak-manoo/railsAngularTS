@@ -9,7 +9,13 @@
         <input aria-label="Search" [(ngModel)]="search" (keyup)="loadTable()" placeholder="Search" type="text">
       </div>
     </div>
-    <table class="table" *ngIf="datas.users">
+    <div>
+      <ngx-datatable class="material" [rows]="rows" [columns]="columns" [columnMode]="'force'" [headerHeight]="50"
+        [footerHeight]="50" [rowHeight]="'auto'" [externalPaging]="true" [count]="page.total" [offset]="page.offset"
+        [limit]="page.limit" (page)='pageChanged($event)'>
+      </ngx-datatable>
+    </div>
+    <!-- <table class="table" *ngIf="datas.users">
       <thead>
         <tr>
           <th>ID</th>
@@ -43,6 +49,6 @@
           <option *ngFor="let limit of limited" [value]="limit">{{ limit }}</option>
         </select>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>

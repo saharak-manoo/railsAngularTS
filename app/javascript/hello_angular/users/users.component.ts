@@ -4,21 +4,23 @@ import { NgFlashMessageService } from "ng-flash-messages";
 import { AppService } from '../app/app.service';
 import { ConfirmDialogModel, ConfirmDialogComponent } from '../confirm_dialog/confirm_dialog.conponent';
 import { MatDialog } from '@angular/material';
+import { Page } from '../_model/page';
+import { PagedData } from '../_model/paged_data';
+import { User } from '../_model/user';
 
 @Component({
   template: templateString,
   providers: [AppService]
 })
 export class UsersComponent {
-  constructor(private ngFlashMessageService: NgFlashMessageService, private appService: AppService, public dialog: MatDialog) { }
+  constructor(private ngFlashMessageService: NgFlashMessageService, private appService: AppService, public dialog: MatDialog) { this.page.offset = 0; this.page.limit = 10; }
   public datas: any;
   public sessions: any;
-  config: any;
   search: any;
-  limit: number = 5;
-  params: any;
-  pageNow: number;
-  limited = [5, 10, 15, 20, 50, 100];
+  page = new Page();
+  rows = new Array<User>();
+  columns = [
+    { prop: 'id', name: 'ID' }, { prop: 'email', name: 'Email' }]
 
   ngOnInit() {
     this.checkSignIn();
@@ -44,23 +46,12 @@ export class UsersComponent {
   }
 
   loadTable() {
-    this.pageNow = !this.config ? 1 : this.config.currentPage;
-    this.params = {
-      search: this.search || '',
-      limit: this.limit,
-      offset: this.pageNow == 1 ? 0 : (this.pageNow - 1) * this.limit
-    }
-    this.datas = {
-      users: null
-    }
-    this.appService.getDataForTable('users', this.params).subscribe(
+    this.appService.getDataForTable('users', this.page).subscribe(
       resp => {
         this.datas = resp;
-        this.config = {
-          itemsPerPage: this.params.limit,
-          currentPage: this.pageNow,
-          totalItems: this.datas.total
-        };
+        this.page = this.datas.page;
+        this.rows = this.datas.users;
+        console.log(this.rows)
       }, e => {
         this.ngFlashMessageService.showFlashMessage({
           messages: [e.message],
@@ -73,7 +64,7 @@ export class UsersComponent {
   }
 
   pageChanged(event) {
-    this.config.currentPage = event;
+    this.page.offset = this.page.limit * event.offset
     this.loadTable();
   }
 

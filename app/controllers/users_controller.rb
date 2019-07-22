@@ -57,7 +57,12 @@ class UsersController < ApplicationController
     total = @users.count
     @users = @users.limit(params[:limit]).offset(params[:offset])
 
-    render json: { users: @users, total: total }
+    render json: { users: @users, 
+                   page: { limit: params[:limit],
+                           total: total,
+                           totalPages: (total / params[:limit].to_i),
+                           offset: params[:offset] }
+                  }
   end
 
   def user_params
