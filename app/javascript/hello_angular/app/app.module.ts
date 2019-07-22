@@ -16,13 +16,15 @@ import { SignInComponent } from '../sign_in/sign_in.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu'
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmDialogComponent } from '../confirm_dialog/confirm_dialog.conponent';
 import { CustomMaterialModule } from '../custom_material/custom_material.module';
 import { RegistrationsComponent } from '../registrations/registrations.conpoment';
 import { ShowUserComponent } from '../users/show_user.compnent';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 enableProdMode();
 
@@ -51,6 +53,8 @@ const appRoutes: Routes = [
     NgxDatatableModule,
     NgxPaginationModule,
     FormsModule,
+    MatTableModule,
+    MatPaginatorModule,
     CustomMaterialModule,
     NgFlashMessagesModule.forRoot(),
     TooltipModule.forRoot(),
@@ -58,6 +62,7 @@ const appRoutes: Routes = [
     MatMenuModule,
     MatDatepickerModule,
     MatFormFieldModule,
+    MatInputModule,
     NgbModule,
     NgbPaginationModule,
     NgbAlertModule,

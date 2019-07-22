@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import templateString from './registrations.html';
 import { NgFlashMessageService } from "ng-flash-messages";
 import { AppService } from '../app/app.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User } from '../_model/user';
 
 @Component({
   template: templateString,

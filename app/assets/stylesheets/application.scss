@@ -23,10 +23,17 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+table {
+  width: 100%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
 .container {
   margin: 30px auto 0;
   display: block;
-  padding: 10px 50px 50px;
 }
 
 .sign-in {

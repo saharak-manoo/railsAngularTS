@@ -11,7 +11,7 @@ import { MatDialog } from '@angular/material';
 })
 export class UsersComponent {
   constructor(private ngFlashMessageService: NgFlashMessageService, private appService: AppService, public dialog: MatDialog) { }
-  public users: any;
+  public datas: any;
   public sessions: any;
   config: any;
   search: any;
@@ -50,16 +50,16 @@ export class UsersComponent {
       limit: this.limit,
       offset: this.pageNow == 1 ? 0 : (this.pageNow - 1) * this.limit
     }
-    this.users = {
+    this.datas = {
       users: null
     }
     this.appService.getDataForTable('users', this.params).subscribe(
       resp => {
-        this.users = resp;
+        this.datas = resp;
         this.config = {
           itemsPerPage: this.params.limit,
           currentPage: this.pageNow,
-          totalItems: this.users.total
+          totalItems: this.datas.total
         };
       }, e => {
         this.ngFlashMessageService.showFlashMessage({
