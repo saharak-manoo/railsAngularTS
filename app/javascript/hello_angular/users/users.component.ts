@@ -16,6 +16,7 @@ export class UsersComponent {
   constructor(private ngFlashMessageService: NgFlashMessageService, private appService: AppService, public dialog: MatDialog) { this.page.page_now = 0; this.page.limit = 10; }
   public datas: any;
   public sessions: any;
+  loading: boolean = false;
   page = new Page();
   rows = new Array<User>();
   columns = [{ prop: 'id', name: 'ID' }, { prop: 'email', name: 'Email' }, { prop: 'first_name', name: 'First Name' }]
@@ -58,6 +59,15 @@ export class UsersComponent {
         });
       }
     )
+  }
+
+  search(event) {
+    this.page.search = event.target.value.toLowerCase();
+    this.loadTable()
+  }
+
+  sort() {
+    this.loading = true;
   }
 
   pageChanged(event) {
