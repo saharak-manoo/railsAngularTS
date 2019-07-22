@@ -6,7 +6,7 @@
   <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
     <div class="row margin">
       <div class="col-lg-6">
-        <img [src]="datas.photo_url" class="text-center" class="upload-photo" (click)="onSelectFile($event)">
+        <img [src]="datas.photo_url" class="text-center" class="upload-photo img-circle" (click)="onSelectFile($event)">
         <input type="file" class="d-none" id="photo" (change)="onFileChange($event)">
       </div>
       <div class="col-lg-6 py-5">

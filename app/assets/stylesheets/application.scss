@@ -42,18 +42,29 @@ th.mat-sort-header-sorted {
   margin-right: 100px;
 }
 
-img {
+.col-max {
+  width: 100%;
+}
+
+.img-circle {
   border-radius: 50%;
 }
 
 .img-sm {
+  border-radius: 50%;
   height: 25px;
   width: 25px;
 }
 
 .img-lg {
+  border-radius: 50%;
   height: 50px;
   width: 50px;
+}
+
+.img-card-list {
+  height: 280px;
+  width: 320px;
 }
 
 img.upload-photo {

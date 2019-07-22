@@ -15,7 +15,6 @@
         [externalPaging]="true" [count]="page.total" [offset]="page.page_now" [limit]="page.limit"
         (page)="pageChanged($event)" (sort)="sort($event)">
 
-        <!-- Row Detail Template -->
         <ngx-datatable-row-detail [rowHeight]="100" #usersDetailRow>
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
             <div class="padding-left-35">

@@ -1,3 +1,38 @@
 <div class="row set-margin">
-  Angular 8
+  <div class="col-lg-12">
+    <h3 class="text-left">All User</h3>
+  </div>
+  <div class="col-lg-12">
+    <div class="row">
+      <div class="col-lg-12">
+        <input type="text" class="col-max" placeholder="Type to filter the name column..." (keyup)="searchUser($event)">
+      </div>
+      <div class="col-lg-4" *ngFor="let user of datas.users | paginate: configPagination">
+        <div class="product-card animated bounceInUp">
+          <div class="card z-depth-4">
+            <div class="card-image">
+              <img [src]="user.photo_url" alt="product-img" class="img-card-list">
+              <span class="card-title"><span>{{ user.full_name }}</span></span>
+            </div>
+            <div class="card-content">
+              <div class="row">
+                <div class="col s12">
+                  <p><strong>Details:</strong><br>
+                    Email: {{ user.email }} Phone number: {{ user.phone_number }}
+                  </p>
+                  <button [disabled]="!sessions.current_user.admin" class="btn btn-danger"
+                    (click)="removeUser(user.id)">Delete</button>
+                  <button class="btn btn-info" routerLink="/users/{{ user.id }}">View detail</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+  </div>
 </div>

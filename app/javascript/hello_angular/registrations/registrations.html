@@ -5,7 +5,7 @@
   <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
     <div class="row margin">
       <div class="col-lg-6">
-        <img [src]="user.photo_url" class="text-center" class="upload-photo" (click)="onSelectFile($event)">
+        <img [src]="user.photo_url" class="text-center" class="upload-photo img-circle" (click)="onSelectFile($event)">
         <input type="file" class="d-none" id="photo" (change)="onFileChange($event)">
       </div>
       <div class="col-lg-6">

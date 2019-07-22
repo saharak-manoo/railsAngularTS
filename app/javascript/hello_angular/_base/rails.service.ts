@@ -15,7 +15,7 @@ export class RailsService {
     return this.http.get<any[]>('/' + path);
   }
 
-  getDataForTable(path, attrs) {
+  getDataForPageSide(path, attrs) {
     return this.http.get<any[]>('/' + path, { params: attrs });
   }
 

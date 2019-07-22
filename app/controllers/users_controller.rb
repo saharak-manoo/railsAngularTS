@@ -66,7 +66,7 @@ class UsersController < ApplicationController
 
     total = @users.count
     limit = params[:limit].to_i
-    offset = params[:page_now].to_i * limit
+    offset = params[:page_now].present? ? (params[:page_now].to_i * limit) : params[:offset]
     @users = @users.limit(limit).offset(offset)
 
     # sort and order

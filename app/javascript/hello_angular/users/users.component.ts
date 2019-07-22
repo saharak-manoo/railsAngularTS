@@ -46,7 +46,7 @@ export class UsersComponent {
 
   loadTable() {
     this.loading = true;
-    this.appService.getDataForTable('users', this.page).subscribe(
+    this.appService.getDataForPageSide('users', this.page).subscribe(
       resp => {
         this.datas = resp;
         this.page = this.datas.page;
