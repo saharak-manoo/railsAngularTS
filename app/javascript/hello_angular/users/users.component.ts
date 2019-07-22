@@ -45,11 +45,13 @@ export class UsersComponent {
   }
 
   loadTable() {
+    this.loading = true;
     this.appService.getDataForTable('users', this.page).subscribe(
       resp => {
         this.datas = resp;
         this.page = this.datas.page;
         this.rows = this.datas.users;
+        this.loading = false;
       }, e => {
         this.ngFlashMessageService.showFlashMessage({
           messages: [e.message],

@@ -203,7 +203,7 @@ $datatable-summary-row-background-hover: #ddd !default;
     .datatable-header-cell {
       text-align: left;
       padding: .9rem 1.2rem;
-      font-weight: 400;
+      font-weight: 700;
       background-color: $datatable-header-cell-background;
       color: $datatable-header-cell-color;
       vertical-align: bottom;
@@ -305,6 +305,7 @@ $datatable-summary-row-background-hover: #ddd !default;
       position: absolute;
 
       .container {
+        margin-top: auto;
         display: block;
         position: relative;
         overflow: hidden;
