@@ -18,6 +18,7 @@ export class ShowUserComponent {
   public user: any;
   public sessions: any;
   public id: string;
+  canUpdate: boolean;
   userForm: FormGroup;
   submitted = false;
   returnUrl = '/users';
@@ -25,6 +26,7 @@ export class ShowUserComponent {
   ngOnInit() {
     this.checkSignIn();
     this.loadUser();
+
     const regexPattern = /\-?\d*\.?\d{1,2}/;
     this.userForm = this.formBuilder.group({
       email: ['', Validators.required],
@@ -32,6 +34,14 @@ export class ShowUserComponent {
       last_name: ['', Validators.required],
       phone_number: ['', Validators.pattern(regexPattern)],
     });
+  }
+
+  canUpdated() {
+    if (this.datas.user.id === this.sessions.current_user.id) {
+      this.canUpdate = true;
+    } else {
+      this.canUpdate = this.sessions.current_user.admin
+    }
   }
 
   checkSignIn() {

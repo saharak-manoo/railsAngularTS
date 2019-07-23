@@ -1,16 +1,18 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only: [:update, :destory]
+  load_and_authorize_resource except: [:check_sign_in]
+  skip_before_action :verify_authenticity_token
+  protect_from_forgery with: :null_session
   
   def index
     data_table
   end
 
   def show
-    @user = User.find_by(id: params[:id])
     render json: { user: @user, photo_url: @user&.photo&.url }
   end
 
   def update
-    @user = User.find_by(id: params[:id])
     if @user.update(user_params)
       render json: { updated: true }, status: :ok
     else
@@ -19,7 +21,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find_by(id: params[:id])
     @user.destroy
 
     render json: { user: @user }
@@ -45,18 +46,14 @@ class UsersController < ApplicationController
   private
 
   def filter_users
-    @users =  if user_signed_in?
-                User.where.not(id: current_user&.id)
-              else 
-                User.all
-              end  
+    @users =  @users.where.not(id: current_user&.id) if user_signed_in?
+    
     # search
     if params[:search].present?
       search = "%#{params[:search]}%"
-      @users = @users.where('email LIKE :search OR
-                             first_name LIKE :search OR
-                             last_name LIKE :search OR
-                             phone_number LIKE :search',
+      @users = @users.where("email ILIKE :search OR
+                             concat(first_name,' ',last_name) ILIKE :search OR
+                             phone_number ILIKE :search",
                              search: search)
     end
   end
