@@ -85,3 +85,10 @@ gem 'cancancan'
 
 gem 'rails_admin', '~> 2.0.0.beta'
 gem "rolify"
+
+group :assets do
+  gem 'therubyracer'
+  gem 'sass-rails', '~> 5'
+  gem 'coffee-rails'
+  gem 'uglifier'
+end
