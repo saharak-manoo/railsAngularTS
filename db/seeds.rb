@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 if User.count.zero?
-  user = User.create!(email: 'amdin@admin.com', first_name: 'amdin', last_name: 'tester', phone_number: '0123456789',                         password: 'password', unconfirmed_email: true)
+  user = User.create!(email: 'admin@admin.com', first_name: 'admin', last_name: 'tester', phone_number: '0123456789',                         password: 'password', confirmed_at: Time.now)
   user.add_role :admin
-  ap "create user => #{user.full_name}"
+  ap "create admin user => #{user.full_name}"
 end
