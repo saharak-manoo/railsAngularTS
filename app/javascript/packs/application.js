@@ -8,6 +8,12 @@
 //= require bootstrap
 //= require bootstrap-sprockets
 //= require data-confirm-modal
+//= require jquery
+//= require jquery-ui
+//= requeire jquery_ujs
+//= require turbolinks
+//= require calendarize
+//= require_tree .
 
 require("@rails/ujs").start()
 require("turbolinks").start()
