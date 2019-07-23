@@ -36,5 +36,9 @@
   "devDependencies": {
     "html-loader": "^0.5.5",
     "webpack-dev-server": "^3.7.2"
+  },
+  "scripts": {
+    "heroku-prebuild": "npm install",
+    "heroku-postbuild": "./bin/webpack-dev-server"
   }
 }
