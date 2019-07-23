@@ -38,6 +38,7 @@
     "webpack-dev-server": "^3.7.2"
   },
   "scripts": {
+    "heroku-postbuild": "webpack -p",
     "heroku-prebuild": "npm install"
   }
 }
