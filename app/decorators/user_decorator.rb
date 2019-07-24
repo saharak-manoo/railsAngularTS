@@ -31,7 +31,7 @@ class UserDecorator < ApplicationDecorator
   end
 
   def admin
-    object.has_role?(:admin)
+    object&.has_role?(:admin).present? ? object&.has_role?(:admin) : false
   end
 
   def roles

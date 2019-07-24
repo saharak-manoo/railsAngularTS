@@ -20,8 +20,6 @@
                   <p><strong>Details:</strong><br>
                     Email: {{ user.email }} Phone number: {{ user.phone_number }}
                   </p>
-                  <button [disabled]="!sessions.current_user.admin" class="btn btn-danger"
-                    (click)="removeUser(user.id)">Delete</button>
                   <button class="btn btn-info" routerLink="/users/{{ user.id }}">View detail</button>
                 </div>
               </div>

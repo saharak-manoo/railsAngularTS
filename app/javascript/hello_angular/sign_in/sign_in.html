@@ -1,31 +1,35 @@
 <div class="container">
-  <div class="row">
-    <div class="d-center col-sm-12 col-lg-6">
-      <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
-        <div class="sign-in">
-          <h3>Sign In</h3>
-        </div>
+  <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-sm-12 col-lg-12">
+        <h3>Sign In</h3>
+      </div>
+
+      <div class="pl-5 col-sm-12 col-lg-6">
         <div class="group">
           <input type="text" formControlName="email" class="input-lable" required [email]="true">
           <span class="highlight"></span>
           <span class="bar"></span>
           <label>Email</label>
         </div>
-
+      </div>
+      <div class="pl-5 col-sm-12 col-lg-6">
         <div class="group">
           <input type="password" formControlName="password" class="input-lable" required>
           <span class="highlight"></span>
           <span class="bar"></span>
           <label>Password</label>
         </div>
-
-        <button [disabled]="signInForm.invalid" class="sign-in btn btn-lg">Sign In</button>
-      </form>
-    </div>
-    <div class="col-sm-12 col-lg-6">
-      <div class="signup-toggle d-center">
-        <h4>Have No Account ? <a routerLink="/sign_up" routerLinkActive="active">Sign Up</a></h4>
       </div>
+
+      <div class="pl-5 col-sm-12 col-lg-12">
+        <button [disabled]="signInForm.invalid" class="sign-in btn btn-lg d-center">Sign In</button>
+      </div>
+    </div>
+  </form>
+  <div class="col-sm-12 col-lg-12">
+    <div class="signup-toggle d-center">
+      <h4>Have No Account ? <a routerLink="/sign_up" routerLinkActive="active">Sign Up</a></h4>
     </div>
   </div>
 </div>

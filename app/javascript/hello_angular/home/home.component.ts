@@ -28,10 +28,11 @@ export class HomeComponent {
 
   loadTable() {
     this.pageNow = !this.configPagination ? 1 : this.configPagination.currentPage;
+    let offset = this.pageNow == 1 ? 0 : (this.pageNow - 1) * this.limit;
     this.params = {
       search: this.search || '',
       limit: this.limit,
-      offset: this.pageNow == 1 ? 0 : (this.pageNow - 1) * this.limit
+      offset: isNaN(offset) ? 0 : offset
     }
     this.datas = {
       users: new Array<User>()

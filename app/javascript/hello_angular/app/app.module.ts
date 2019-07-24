@@ -25,6 +25,7 @@ import { RegistrationsComponent } from '../registrations/registrations.conpoment
 import { ShowUserComponent } from '../users/show_user.compnent';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatButtonModule } from '@angular/material/button'
 
 enableProdMode();
 
@@ -52,6 +53,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     NgxDatatableModule,
     NgxPaginationModule,
+    MatButtonModule,
     FormsModule,
     MatTableModule,
     MatPaginatorModule,
