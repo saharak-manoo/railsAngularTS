@@ -41,8 +41,6 @@
   },
   "scripts": {
     "heroku-prebuild": "npm install",
-    "heroku-postbuild": "ng build",
-    "preinstall": "npm install -g node-gyp",
     "heroku-yarn": "yarn install"
   }
 }
