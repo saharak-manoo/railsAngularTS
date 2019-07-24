@@ -1,34 +1,33 @@
 <div class="container">
   <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
     <div class="row">
-      <div class="col-sm-12 col-lg-12">
+      <div class="col-sm-12 mr-5">
         <h3>Sign In</h3>
       </div>
 
-      <div class="pl-5 col-sm-12 col-lg-6">
+      <div class="offset-4 col-sm-4 col-lg-4 d-center py-3">
         <div class="group">
-          <input type="text" formControlName="email" class="input-lable" required [email]="true">
+          <input type="text" formControlName="email" required [email]="true">
           <span class="highlight"></span>
           <span class="bar"></span>
           <label>Email</label>
         </div>
-      </div>
-      <div class="pl-5 col-sm-12 col-lg-6">
+
         <div class="group">
-          <input type="password" formControlName="password" class="input-lable" required>
+          <input type="password" formControlName="password" required>
           <span class="highlight"></span>
           <span class="bar"></span>
           <label>Password</label>
         </div>
       </div>
 
-      <div class="pl-5 col-sm-12 col-lg-12">
+      <div class="pl-5 col-sm-12">
         <button [disabled]="signInForm.invalid" class="sign-in btn btn-lg d-center">Sign In</button>
       </div>
     </div>
   </form>
   <div class="col-sm-12 col-lg-12">
-    <div class="signup-toggle d-center">
+    <div class="d-center">
       <h4>Have No Account ? <a routerLink="/sign_up" routerLinkActive="active">Sign Up</a></h4>
     </div>
   </div>
