@@ -32,15 +32,17 @@
     "ts-loader": "^6.0.4",
     "turbolinks": "^5.2.0",
     "typescript": "^3.5.3",
-    "zone.js": "^0.9.1"
+    "zone.js": "^0.9.1",
+    "html-loader": "^0.5.5"
   },
   "version": "0.1.0",
   "devDependencies": {
-    "html-loader": "^0.5.5",
     "webpack-dev-server": "^3.7.2"
   },
   "scripts": {
     "heroku-prebuild": "npm install",
+    "heroku-postbuild": "ng build",
+    "preinstall": "npm install -g node-gyp",
     "heroku-yarn": "yarn install"
   }
 }
