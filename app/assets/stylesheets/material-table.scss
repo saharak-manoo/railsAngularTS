@@ -513,3 +513,20 @@ $datatable-summary-row-background-hover: #ddd !default;
 .padding-left-35 {
   padding-left: 35px;
 }
+
+@media screen and (max-width: 800px) {
+  .desktop-hidden {
+    display: initial;
+  }
+  .mobile-hidden {
+    display: none;
+  }
+}
+@media screen and (min-width: 800px) {
+  .desktop-hidden {
+    display: none;
+  }
+  .mobile-hidden {
+    display: initial;
+  }
+}

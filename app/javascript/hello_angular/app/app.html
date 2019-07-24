@@ -1,22 +1,17 @@
-<nav class="navbar navbar-expand-lg navbar-dark primary-color fixed-top">
+<nav class="navbar navbar-expand-sm navbar-dark primary-color fixed-top">
   <a class="navbar-brand" routerLink="homes" routerLinkActive="active">Angular</a>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
-    aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="basicExampleNav">
+  <div class="collapse navbar-collapse" id="navbar">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item" [ngClass]="{ 'active': activeTab === 'homes'}" (click)="activeNavTab('homes')">
+      <li class="nav-item" [ngClass]="{ 'active': activeTab === 'homes' }" (click)="activeNavTab('homes')">
         <a class="nav-link" routerLink="homes" routerLinkActive="active">Home
           <span class="sr-only">(current)</span>
         </a>
       </li>
-      <li class="nav-item" [ngClass]="{ 'active': activeTab === 'users'}" (click)="activeNavTab('users')">
+      <li class="nav-item" [ngClass]="{ 'active': activeTab === 'users' }" (click)="activeNavTab('users')">
         <a class="nav-link" routerLink="users" routerLinkActive="active">User</a>
       </li>
-      <li class="nav-item" *ngIf="!sessions.signed_in" [ngClass]="{ 'active': activeTab === 'sign_in'}"
+      <li class="nav-item" *ngIf="!sessions.signed_in" [ngClass]="{ 'active': activeTab === 'sign_in' }"
         (click)="activeNavTab('sign_in')">
         <a class="nav-link" routerLink="sign_in" routerLinkActive="active">Sign in</a>
       </li>

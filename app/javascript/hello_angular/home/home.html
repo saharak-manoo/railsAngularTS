@@ -1,13 +1,13 @@
 <div class="row set-margin">
-  <div class="col-lg-12">
+  <div class="col-sm-12">
     <h3 class="text-left">All User</h3>
   </div>
-  <div class="col-lg-12">
+  <div class="col-sm-12">
     <div class="row">
-      <div class="col-lg-12">
+      <div class="col-sm-12">
         <input type="text" class="col-max" placeholder="Type to filter the name column..." (keyup)="searchUser($event)">
       </div>
-      <div class="col-lg-4" *ngFor="let user of datas.users | paginate: configPagination">
+      <div class="col-sm-6 col-lg-4" *ngFor="let user of datas.users | paginate: configPagination">
         <div class="product-card animated bounceInUp">
           <div class="card z-depth-4">
             <div class="card-image">

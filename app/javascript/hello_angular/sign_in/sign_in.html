@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="row margin">
-    <div class="col-lg-6">
+  <div class="row">
+    <div class="d-center col-sm-12 col-lg-6">
       <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
         <div class="sign-in">
           <h3>Sign In</h3>
@@ -22,8 +22,8 @@
         <button [disabled]="signInForm.invalid" class="sign-in btn btn-lg">Sign In</button>
       </form>
     </div>
-    <div class="col-lg-6">
-      <div class="signup-toggle center">
+    <div class="col-sm-12 col-lg-6">
+      <div class="signup-toggle d-center">
         <h4>Have No Account ? <a routerLink="/sign_up" routerLinkActive="active">Sign Up</a></h4>
       </div>
     </div>
