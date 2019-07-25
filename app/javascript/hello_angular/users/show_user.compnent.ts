@@ -37,7 +37,7 @@ export class ShowUserComponent {
   }
 
   canUpdated() {
-    if (this.datas.user.id === this.sessions.current_user.id) {
+    if (this.sessions.current_user.admin) {
       this.canUpdate = true;
     } else {
       this.canUpdate = this.sessions.current_user.admin

@@ -19,11 +19,21 @@ export class UsersComponent {
   page = new Page();
   rows = new Array<User>();
   expanded: any = {};
+  canRemove: boolean;
   @ViewChild('usersTable', { static: false }) table: any;
 
   ngOnInit() {
     this.checkSignIn();
     this.loadTable();
+    this.canRemoved();
+  }
+
+  canRemoved() {
+    if (this.sessions.current_user.admin) {
+      this.canRemove = true;
+    } else {
+      this.canRemove = false;
+    }
   }
 
   checkSignIn() {

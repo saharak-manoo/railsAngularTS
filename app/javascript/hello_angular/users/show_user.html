@@ -6,7 +6,8 @@
   <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
     <div class="row">
       <div class="col-sm-12 col-lg-6">
-        <img [src]="datas.photo_url" class="text-center" class="upload-photo img-circle" (click)="onSelectFile($event)">
+        <img [src]="datas.user.photo_url" class="text-center" class="upload-photo img-circle"
+          (click)="onSelectFile($event)">
         <input type="file" class="d-none" id="photo" (change)="onFileChange($event)">
       </div>
 
@@ -50,7 +51,7 @@
         </div>
       </div>
     </div>
-    <button [disabled]="userForm.invalid || canUpdate" class="text-center btn btn-lg">Update</button>
+    <button [disabled]="userForm.invalid || canUpdate" class="btn btn-outline-dark btn-rounded">Update</button>
   </form>
   <br>
   <span class="text-danger" *ngIf="!sessions.current_user.admin">Only update for user admin</span>

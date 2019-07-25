@@ -31,7 +31,7 @@
           <img [src]="sessions.current_user.photo_url" class="rounded-circle z-depth-0 img-sm" alt="avatar image">
         </a>
         <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" routerLink="users/{{ sessions.current_user.id }}"
+          <a class="dropdown-item" routerLink="/users/{{ sessions.current_user.id }}"
             routerLinkActive="active">Profile</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" (click)="signOut(sessions.current_user.id)">Sign Out</a>
@@ -55,7 +55,7 @@
 </div>
 
 <footer class="page-footer font-small unique-color-dark pt-4">
-  <div class="container">
+  <div class="container" *ngIf="!sessions.signed_in">
     <ul class="list-unstyled list-inline text-center py-2">
       <li class="list-inline-item">
         <h5 class="mb-1">Register for free</h5>

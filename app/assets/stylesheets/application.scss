@@ -24,6 +24,137 @@ body {
   height: 100%;
 }
 
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: #007bff;
+  transition: all .2s ease-in-out;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.waves-effect {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-sm {
+  padding: .25rem .5rem;
+  font-size: .875rem;
+  line-height: 1.5;
+  border-radius: .2rem;
+}
+
+.btn-floating {
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, .18), 0 4px 15px 0 rgba(0, 0, 0, .15);
+  width: 47px;
+  height: 47px;
+  position: relative;
+  z-index: 1;
+  vertical-align: middle;
+  display: inline-block;
+  overflow: hidden;
+  transition: all .2s ease-in-out;
+  margin: 10px;
+  border-radius: 50%;
+  padding: 0;
+  cursor: pointer;
+}
+
+.btn-fb {
+  background-color: #3b5998 !important;
+  color: #fff;
+}
+
+.btn-floating.btn-sm i {
+  font-size: .96154rem;
+  line-height: 36.15385px;
+}
+
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+.btn-floating i {
+  display: inline-block;
+  width: inherit;
+  text-align: center;
+  color: #007bff;
+}
+
+.btn-floating i {
+  font-size: 1.25rem;
+  line-height: 47px;
+}
+
+.fab {
+  font-family: 'Font Awesome 5 Brands';
+}
+
+.fa,
+.fab,
+.fal,
+.far,
+.fas {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+}
+
+.btn {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+  padding: .84rem 2.14rem;
+  font-size: .81rem;
+  margin: .375rem;
+  border: 0;
+  border-radius: .125rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  white-space: normal;
+  word-wrap: break-word;
+  color: inherit;
+}
+
+.btn-rounded {
+  border-radius: 10em;
+}
+
+.btn-icon {
+  margin: 10px;
+  border-radius: 50%;
+}
+
+.btn-tw {
+  background-color: #55acee !important;
+  color: #fff;
+}
+
+.btn-li {
+  background-color: #1785da !important;
+  color: #fff;
+}
+
+.btn-git {
+  background-color: #121213 !important;
+  color: #fff;
+}
+
 table {
   width: 100%;
 }
@@ -179,6 +310,7 @@ img.upload-photo {
   height: 200px;
   width: 200px;
 }
+
 .margin-l {
   margin-left: -10%;
 }

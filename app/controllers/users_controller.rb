@@ -9,7 +9,17 @@ class UsersController < ApplicationController
   end
 
   def show
-    render json: { user: @user, photo_url: @user&.photo&.url }
+    render json: { user: @user&.decorate.as_json(
+                                decorator_methods: [
+                                  :full_name,
+                                  :admin,
+                                  :roles,
+                                  :created_at_formatted,
+                                  :updated_at_formatted,
+                                  :deleted_at_formatted,
+                                  :photo,
+                                  :photo_url
+                                ]) }
   end
 
   def update
@@ -38,8 +48,7 @@ class UsersController < ApplicationController
                                                 :deleted_at_formatted,
                                                 :photo,
                                                 :photo_url
-                                              ]) 
-                  }
+                                              ]) }
                                             
   end  
 

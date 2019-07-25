@@ -21,15 +21,14 @@
                 <img [src]="row.photo_url" class="img-lg"> Full Name: {{ row.full_name }}
               </div>
               <div class="col-sm-6">
-                <button [disabled]="!sessions.current_user.admin" class="btn btn-outline-danger"
+                <button [disabled]="canRemove" class="btn btn-outline-danger btn-rounded"
                   (click)="removeUser(row.id)">Delete</button>
               </div>
             </div>
           </ng-template>
         </ngx-datatable-row-detail>
 
-        <ngx-datatable-column [width]="10" [resizeable]="false" [sortable]="false" [draggable]="false"
-          [canAutoResize]="false">
+        <ngx-datatable-column [resizeable]="false" [sortable]="false" [draggable]="false" [canAutoResize]="false">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             <a href="javascript:void(0)" [class.datatable-icon-right]="!expanded" [class.datatable-icon-down]="expanded"
               title="Expand/Collapse Row" (click)="toggleExpandRow(row)">
@@ -37,7 +36,7 @@
           </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column [width]="30" prop="id" name="ID">
+        <ngx-datatable-column prop="id" name="ID">
           <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
             {{ row.id }}
           </ng-template>
