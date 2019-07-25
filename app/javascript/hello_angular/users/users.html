@@ -21,7 +21,7 @@
                 <img [src]="row.photo_url" class="img-lg"> Full Name: {{ row.full_name }}
               </div>
               <div class="col-sm-6">
-                <button [disabled]="!sessions.current_user.admin" class="btn btn-danger"
+                <button [disabled]="!sessions.current_user.admin" class="btn btn-outline-danger"
                   (click)="removeUser(row.id)">Delete</button>
               </div>
             </div>
