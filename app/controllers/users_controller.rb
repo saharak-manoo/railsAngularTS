@@ -65,6 +65,11 @@ class UsersController < ApplicationController
                              phone_number ILIKE :search",
                              search: search)
     end
+
+    # sort and order
+    if params[:sort].present?
+      @users = @users.order("#{params[:sort]} #{params[:order]}")
+    end
   end
 
   def data_table
@@ -74,11 +79,6 @@ class UsersController < ApplicationController
     limit = params[:limit].to_i
     offset = params[:page_now].present? ? (params[:page_now].to_i * limit) : params[:offset]
     @users = @users.order(updated_at: :desc).limit(limit).offset(offset)
-
-    # sort and order
-    if params[:sort].present?
-      @users = @users.order("#{params[:sort]} #{params[:order]}")
-    end  
 
     render json: { users: @users.decorate.as_json(
                                 decorator_methods: [
