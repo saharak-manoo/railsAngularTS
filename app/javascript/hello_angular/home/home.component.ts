@@ -17,7 +17,7 @@ export class HomeComponent {
   public sessions: any;
   configPagination = new ConfigPagination();
   search: string;
-  limit: number = 6;
+  limit: number = 8;
   params: any;
   pageNow: number;
 
